@@ -103,8 +103,6 @@ export const TableComponent = (props) => {
     setPage(0);
   };
 
-  if (rows.length < 1) return <></>;
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -120,22 +118,26 @@ export const TableComponent = (props) => {
               Sexo
             </TableCell>
           </TableRow>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.breed}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.sex}
-              </TableCell>
-            </TableRow>
-          ))}
+          {rows?.length < 1 ? (
+            <p style={{ marginLeft: "10px" }}>No se encontraron registro :(</p>
+          ) : (
+            (rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row) => (
+              <TableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.breed}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.sex}
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
         <TableFooter>
           <TableRow>

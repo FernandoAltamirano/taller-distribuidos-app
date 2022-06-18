@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components";
-import { Home, Hostels, Pets } from "./pages";
+import { Home, Hostels, Pets, RegisterPet } from "./pages";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function App() {
@@ -12,6 +12,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/hostels" element={<Hostels />} />
             <Route path="/pets" element={<Pets />} />
+            <Route path="/register" element={<RegisterPet />} />
           </Routes>
         </Layout>
       </BrowserRouter>
