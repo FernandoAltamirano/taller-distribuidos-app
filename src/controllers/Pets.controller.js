@@ -1,6 +1,6 @@
-import { toast } from "../helpers";
+import { toast } from '../helpers';
 
-const url = "https://taller-distr.herokuapp.com";
+const url = 'http://localhost:3001';
 export class PetsController {
   static getAllPets = async ({ setLoading, setPets }) => {
     setLoading(true);
@@ -9,7 +9,7 @@ export class PetsController {
       const pets = await response.json();
       setPets(pets.reverse());
     } catch (err) {
-      toast("warn", "No se pudo cargar las mascotas");
+      toast('warn', 'No se pudo cargar las mascotas');
     } finally {
       setLoading(false);
     }
@@ -17,23 +17,22 @@ export class PetsController {
   static registerNewPet = async ({ data, setLoading }) => {
     setLoading(true);
     try {
-      const objetcWithNumberType = { ...data, age: Number(data.age) };
       const response = await fetch(`${url}/pets/register`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYWUyNGYzMDc2NDJlOTVjZDJkZmZlZSIsImVtYWlsIjoiYWxiZXJndWVAZ21haWwuY29tIiwiaWF0IjoxNjU1NTgwMzk2LCJleHAiOjE2NTYxODUxOTZ9.i550RvCTaMbMdzbHMmQcn55LwOpMBQLvIMc1Z8w7Zlk",
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYWUzYzI4MzE4NzhkMzhlMjM2NjA2YiIsImVtYWlsIjoiYWxiZXJndWVAZ21haWwuY29tIiwiaWF0IjoxNjU1NTg1ODM2LCJleHAiOjE2NTYxOTA2MzZ9.nDuK36lneOmI4-d_rfvClQIrLKFtgtX1W1mVHUfDUIs',
         },
-        body: JSON.stringify(objetcWithNumberType),
+        body: JSON.stringify(data),
       });
       const jsonResponse = await response.json();
       if (jsonResponse.id) {
-        toast("success", "Registro exitoso");
+        toast('success', 'Registro exitoso');
         return true;
       }
     } catch (err) {
-      toast("warn", "No se pudo registrar las mascotas");
+      toast('warn', 'No se pudo registrar las mascotas');
       return false;
     } finally {
       setLoading(false);
