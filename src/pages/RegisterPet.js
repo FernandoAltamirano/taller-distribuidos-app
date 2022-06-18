@@ -1,23 +1,22 @@
-import { Button, MenuItem, TextField } from "@mui/material";
-import isEmpty from "is-empty";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { PetsController } from "../controllers/Pets.controller";
+import { Button, MenuItem, TextField } from '@mui/material';
+import isEmpty from 'is-empty';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PetsController } from '../controllers/Pets.controller';
 
 const URL =
-  "https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg";
+  'https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg';
 export const RegisterPet = () => {
   const navigate = useNavigate();
   const [petData, setPetData] = useState({
-    code: "",
-    name: "",
-    age: "",
-    date: "",
-    size: "",
-    activity: "",
-    gender: "",
+    code: '',
+    name: '',
+    date: '',
+    size: '',
+    activity: '',
+    gender: '',
     img: URL,
-    description: "",
+    description: '',
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -43,7 +42,7 @@ export const RegisterPet = () => {
       setLoading,
     });
     if (response) {
-      navigate("/pets");
+      navigate('/pets');
     }
   };
   const customValidations = () => {
@@ -53,9 +52,6 @@ export const RegisterPet = () => {
     }
     if (isEmpty(petData.code)) {
       errors.code = true;
-    }
-    if (isEmpty(petData.age)) {
-      errors.age = true;
     }
     if (isEmpty(petData.date)) {
       errors.date = true;
@@ -80,40 +76,40 @@ export const RegisterPet = () => {
   };
   const activityOptions = [
     {
-      value: "Alto",
-      label: "Alto",
+      value: 'Alto',
+      label: 'Alto',
     },
     {
-      value: "Medio",
-      label: "Medio",
+      value: 'Medio',
+      label: 'Medio',
     },
     {
-      value: "Pequeño",
-      label: "Pequeño",
+      value: 'Pequeño',
+      label: 'Pequeño',
     },
   ];
   const sizeOptions = [
     {
-      value: "Pequeño",
-      label: "Pequeño",
+      value: 'Pequeño',
+      label: 'Pequeño',
     },
     {
-      value: "Mediano",
-      label: "Mediano",
+      value: 'Mediano',
+      label: 'Mediano',
     },
     {
-      value: "Grande",
-      label: "Grande",
+      value: 'Grande',
+      label: 'Grande',
     },
   ];
   const genderOptions = [
     {
-      value: "Macho",
-      label: "Macho",
+      value: 'Macho',
+      label: 'Macho',
     },
     {
-      value: "Hembra",
-      label: "Hembra",
+      value: 'Hembra',
+      label: 'Hembra',
     },
   ];
   return (
@@ -135,14 +131,6 @@ export const RegisterPet = () => {
           name="name"
           onChange={handleSetPetData}
           label="Nombre"
-        />
-        <TextField
-          error={errors.age}
-          value={petData.age}
-          name="age"
-          type="number"
-          onChange={handleSetPetData}
-          label="Edad"
         />
         <TextField
           error={errors.size}

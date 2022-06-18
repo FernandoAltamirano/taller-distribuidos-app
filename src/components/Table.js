@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   TableContainer,
   Table,
@@ -11,13 +11,13 @@ import {
   Box,
   IconButton,
   useTheme,
-} from "@mui/material";
+} from '@mui/material';
 import {
   KeyboardArrowRight,
   KeyboardArrowLeft,
   LastPageOutlined,
   FirstPageOutlined,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -46,7 +46,7 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === "rtl" ? (
+        {theme.direction === 'rtl' ? (
           <LastPageOutlined />
         ) : (
           <FirstPageOutlined />
@@ -57,7 +57,7 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === "rtl" ? (
+        {theme.direction === 'rtl' ? (
           <KeyboardArrowRight />
         ) : (
           <KeyboardArrowLeft />
@@ -68,7 +68,7 @@ function TablePaginationActions(props) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === "rtl" ? (
+        {theme.direction === 'rtl' ? (
           <KeyboardArrowLeft />
         ) : (
           <KeyboardArrowRight />
@@ -79,7 +79,7 @@ function TablePaginationActions(props) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? (
+        {theme.direction === 'rtl' ? (
           <FirstPageOutlined />
         ) : (
           <LastPageOutlined />
@@ -109,17 +109,23 @@ export const TableComponent = (props) => {
         <TableBody>
           <TableRow className="table-headers">
             <TableCell component="th" scope="row">
+              Código
+            </TableCell>
+            <TableCell component="th" scope="row">
               Nombre
             </TableCell>
-            <TableCell style={{ width: 160 }} align="right">
-              Raza
+            <TableCell style={{ width: 160 }} align="left">
+              Tamaño
             </TableCell>
-            <TableCell style={{ width: 160 }} align="right">
-              Sexo
+            <TableCell style={{ width: 160 }} align="left">
+              Nivel de Actividad
+            </TableCell>
+            <TableCell style={{ width: 160 }} align="left">
+              Género
             </TableCell>
           </TableRow>
           {rows?.length < 1 ? (
-            <p style={{ marginLeft: "10px" }}>No se encontraron registro :(</p>
+            <p style={{ marginLeft: '10px' }}>No se encontraron registro :(</p>
           ) : (
             (rowsPerPage > 0
               ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -127,13 +133,19 @@ export const TableComponent = (props) => {
             ).map((row) => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
+                  {row.code}
+                </TableCell>
+                <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {row.breed}
+                <TableCell style={{ width: 160 }} align="left">
+                  {row.size}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {row.sex}
+                <TableCell style={{ width: 160 }} align="left">
+                  {row.activity}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="left">
+                  {row.gender}
                 </TableCell>
               </TableRow>
             ))
@@ -142,14 +154,14 @@ export const TableComponent = (props) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
                 inputProps: {
-                  "aria-label": "rows per page",
+                  'aria-label': 'rows per page',
                 },
                 native: true,
               }}
