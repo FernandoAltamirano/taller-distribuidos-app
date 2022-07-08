@@ -7,7 +7,7 @@ export const Header = () => {
         <div />
         <Menu />
       </div>
-      <Sidebar signOut={() => {}} />
+      <Sidebar signOut={() => { }} />
     </>
   );
 };
