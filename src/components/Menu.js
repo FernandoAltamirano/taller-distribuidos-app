@@ -30,7 +30,7 @@ export const MenuComponent = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Margorie Alonso <KeyboardArrowDownIcon />
+        Administrador <KeyboardArrowDownIcon />
       </Button>
       <Menu
         id="basic-menu"

@@ -53,6 +53,7 @@ export const Sidebar = ({ signOut }) => {
             <p className="name">Administrador</p>
           </div>
           <ExitToAppIcon
+            onClick={signOut}
             width="30"
             color="var(--primary-color)"
             cursor="pointer"

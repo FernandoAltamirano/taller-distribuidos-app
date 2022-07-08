@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, TextField } from "@mui/material";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthController } from "../controllers/Auth.controller";
 import isEmpty from "is-empty";
+import { EMAIL_PATTERN } from '../constants'
 
 export const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -24,10 +25,10 @@ export const Register = () => {
     if (isEmpty(registerData.address)) {
       errors.address = true;
     }
-    if (isEmpty(registerData.email)) {
+    if (isEmpty(registerData.email) || !EMAIL_PATTERN.test(registerData.email)) {
       errors.email = true;
     }
-    if (isEmpty(registerData.password)) {
+    if (isEmpty(registerData.password) || registerData.password.length < 8 || registerData.password.length > 20) {
       errors.password = true;
     }
     if (
@@ -46,6 +47,7 @@ export const Register = () => {
       ...registerData,
       [ev.target.name]: ev.target.value,
     });
+    delete errors[ev.target.name]
   };
 
   const handleRegisterData = async () => {
@@ -66,7 +68,7 @@ export const Register = () => {
     }
   }, [registerData]);
   return (
-    <>
+    <div className="auth-form-container">
       <h1>Regístrate</h1>
       <div className="flex form-container">
         <TextField
@@ -123,8 +125,10 @@ export const Register = () => {
       >
         Registrarse
       </Button>
-      <span>¿Ya tienes una cuenta? </span>
-      <Link to="/inicia-sesion">Inicia sesión</Link>
-    </>
+      <div className="auth-form-container-link">
+        <span>¿Ya tienes una cuenta? </span>
+        <Link to="/inicia-sesion">Inicia sesión</Link>
+      </div>
+    </div>
   );
 };

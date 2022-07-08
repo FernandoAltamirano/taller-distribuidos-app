@@ -49,6 +49,7 @@ export const Login = () => {
       ...loginData,
       [ev.target.name]: ev.target.value,
     });
+    delete errors[ev.target.name]
   };
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export const Login = () => {
   }, [loginData]);
 
   return (
-    <>
+    <div className="auth-form-container">
       <h1>Inicia sesión</h1>
       <div className="flex form-container">
         <TextField
@@ -86,8 +87,10 @@ export const Login = () => {
       >
         Inicia sesión
       </Button>
-      <span>¿No tienes una cuenta? </span>
-      <Link to="/registrate">Registrate</Link>
-    </>
+      <div className="auth-form-container-link">
+        <span>¿No tienes una cuenta? </span>
+        <Link to="/registrate">Registrate</Link>
+      </div>
+    </div>
   );
 };

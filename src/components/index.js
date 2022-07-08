@@ -1,4 +1,5 @@
-export { Layout } from "./Layout";
+export { LayoutDashboard } from "./Layouts/Dashboard";
+export { LayoutAuth } from "./Layouts/Auth";
 export { Header } from "./Header";
 export { MenuComponent as Menu } from "./Menu";
 export { DrawerComponent as Drawer } from "./Drawer";

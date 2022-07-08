@@ -13,7 +13,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
   background-color: var(--gray);
 }
 
@@ -23,6 +22,12 @@ code {
 }
 
 /* GLOBAL CSS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 20px;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
@@ -38,10 +43,8 @@ code {
 }
 
 .form-container {
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  gap: 20px;
-  width: 70%;
+  width: 100%;
+  gap: 10px 0;
 }
 
 .modal-container {
@@ -49,6 +52,11 @@ code {
   padding: 1em 2em 2em 2em;
   border-radius: 10px;
   /* background-color: var(--white-color); */
+}
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root:disabled {
+  cursor: default;
+  opacity: .5;
 }
 
 /* LAYOUT */
@@ -254,4 +262,43 @@ code {
 
 .modal-delete-container button {
   margin-right: 10px;
+}
+
+.bg-auth {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -9999;
+}
+
+/* LOGIN */
+.auth-form-container {
+  color: var(--gray) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid var(--gray);
+  width: 90%;
+  padding: 1rem;
+}
+
+.auth-form-container button {
+  width: 100%;
+  height: 50px;
+  margin-top: 1rem;
+}
+
+.auth-form-container-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.auth-form-container-link a {
+  font-weight: bold;
+  color: var(--white-color);
+  letter-spacing: 1px;
 }

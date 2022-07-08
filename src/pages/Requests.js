@@ -3,7 +3,7 @@ export const Requests = () => {
     <div className="layout-page">
       <h1>Solicitudes</h1>
       <div>
-        <span>margorie margarita alonso varillas </span>
+        <span>Solicitudes </span>
       </div>
     </div>
   );

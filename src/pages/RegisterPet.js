@@ -109,7 +109,7 @@ export const RegisterPet = () => {
       <h1>Mascotas</h1>
       <span>Agrege la información de una nueva mascota </span>
       <h2>Registro</h2>
-      <div className="form-container">
+      <div className="grid">
         <TextField
           error={errors.code}
           value={petData.code}

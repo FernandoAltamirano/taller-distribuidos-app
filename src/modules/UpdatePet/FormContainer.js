@@ -31,10 +31,6 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
   useEffect(() => {
     if (!isEmpty(errors)) {
       customValidations();
-      console.log(
-        "🚀 ~ file: FormContainer.js ~ line 36 ~ FormContainer ~ petData",
-        petData
-      );
     }
   }, [petData]);
 

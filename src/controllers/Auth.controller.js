@@ -1,3 +1,4 @@
+import isEmpty from "is-empty";
 import { BASE_URL } from "../constants/baseUrl";
 import { toast } from "../helpers";
 export class AuthController {
@@ -12,8 +13,12 @@ export class AuthController {
         body: JSON.stringify(data),
       });
       const jsonResponse = await response.json();
-      toast("success", "Registro exitoso.");
-      return jsonResponse;
+      if (!isEmpty(jsonResponse.id)) {
+        toast("success", "Registro exitoso.");
+        return jsonResponse;
+      } else {
+        toast("warn", jsonResponse.error);
+      }
     } catch (err) {
       toast("warn", "Ocurrió un problema al intentar registrar sus datos.");
       return false;

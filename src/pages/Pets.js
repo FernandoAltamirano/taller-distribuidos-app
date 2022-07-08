@@ -96,7 +96,7 @@ export const Pets = () => {
       <div className="layout-page">
         <h1>Mascotas</h1>
         <div>
-          <span>margorie margarita alonso varillas </span>
+          <span>Descripcion </span>
           <Link to="/mascotas/registrar">Registrar nuevo {">"}</Link>
 
           <div className="pets-table-container">
