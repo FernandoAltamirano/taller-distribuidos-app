@@ -61,7 +61,7 @@ export const Login = () => {
   return (
     <div className="auth-form-container">
       <h1>Inicia sesión</h1>
-      <div className="flex form-container">
+      <div className="flex-column form-container">
         <TextField
           error={errors.email}
           value={loginData.email}

@@ -70,7 +70,7 @@ export const Register = () => {
   return (
     <div className="auth-form-container">
       <h1>Regístrate</h1>
-      <div className="flex form-container">
+      <div className="flex-column form-container">
         <TextField
           error={errors.name}
           value={registerData.name}
