@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Loader, Table } from "../components";
+import { Loader, Table } from "../../components";
 import { TextField, Button, MenuItem, Menu } from "@mui/material";
-import { PetsController } from "../controllers/Pets.controller";
-import { DeletePetModal, UpdateForm } from "../modules";
+import { PetsController } from "../../controllers/Pets.controller";
+import { DeletePetModal, UpdateForm } from "../../modules";
 import ReplayIcon from "@mui/icons-material/Replay";
 
 export const Pets = () => {
@@ -52,6 +52,7 @@ export const Pets = () => {
     const petDataById = pets.find((pet) => pet.id === id);
     setSelectedPetData(petDataById);
   };
+
 
   const tableSlots = [
     {

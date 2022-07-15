@@ -132,8 +132,8 @@
   border: 1px solid transparent;
 
 }
-.sidebar li a:hover {
-  border-color: var(--white-color);
+.element-active {
+  border-color: var(--white-color)!important;
 }
 .sidebar.open li a .links_name {
   opacity: 1;

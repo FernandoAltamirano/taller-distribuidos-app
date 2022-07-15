@@ -4,11 +4,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArticleIcon from "@mui/icons-material/Article";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./sidebar.css";
 
 export const Sidebar = ({ signOut }) => {
+  const location = useLocation()
   const [toggleShow, setToggleShow] = useState(false);
+
+  const handleItemActive = (item) => location.pathname.slice(1) === item ? "element-active" : ""
   return (
     <div className={toggleShow ? "sidebar open" : "sidebar"}>
       <div className="logo-details">
@@ -27,7 +30,7 @@ export const Sidebar = ({ signOut }) => {
       </div>
       <ul className="nav-list">
         <li>
-          <Link to="/solicitudes">
+          <Link to="/solicitudes" className={handleItemActive("solicitudes")}>
             <i>
               <ArticleIcon />
             </i>
@@ -36,7 +39,7 @@ export const Sidebar = ({ signOut }) => {
           <span className="tooltip">Solicitudes</span>
         </li>
         <li>
-          <Link to="/mascotas">
+          <Link to="/mascotas" className={handleItemActive("mascotas")}>
             <i>
               <PetsIcon />
             </i>

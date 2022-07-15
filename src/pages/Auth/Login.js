@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import isEmpty from "is-empty";
-import { AuthController } from "../controllers/Auth.controller";
+import { AuthController } from "../../controllers/Auth.controller";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser } from "../redux/actions";
+import { setUser } from "../../redux/actions";
 
 export const Login = () => {
   const dp = useDispatch();

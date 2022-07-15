@@ -91,7 +91,7 @@ function TablePaginationActions(props) {
 }
 
 export const TableComponent = (props) => {
-  const { data, slots } = props;
+  const { data, slots,actionRow } = props;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -125,7 +125,7 @@ export const TableComponent = (props) => {
               : data
             ).map((row) => {
               return (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} className={!isEmpty(actionRow) ? "table-row" : ""} onClick={() => actionRow(row)}>
                   {slots.map((slot) => {
                     return (
                       <TableCell

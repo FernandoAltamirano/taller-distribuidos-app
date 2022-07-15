@@ -1,6 +1,7 @@
-export { Home } from "./Home";
-export { Pets } from "./Pets";
-export { Register } from "./Register";
-export { Login } from "./Login";
-export { RegisterPet } from "./RegisterPet";
-export { Requests } from "./Requests";
+export { Home } from "./Dashboard/Home";
+export { Pets } from "./Dashboard/Pets";
+export { RegisterPet } from "./Dashboard/RegisterPet";
+export { Requests } from "./Dashboard/Requests";
+export { Register } from "./Auth/Register";
+export { Login } from "./Auth/Login";
+export { Landing } from "./Landing/Landing";

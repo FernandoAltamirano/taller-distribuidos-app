@@ -244,7 +244,6 @@ code {
 /* UPDATE PET */
 .update-pet-modal {
   width: 70%;
-
 }
 
 .update-pet-modal button {
@@ -305,4 +304,10 @@ code {
 
 .css-i44wyl{
   width: 100%;
+}
+
+.table-row:hover{
+  background-color: var(--gray);
+  transition: 200ms all;
+  cursor: pointer;
 }

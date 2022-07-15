@@ -2,7 +2,7 @@ import { Button, MenuItem, TextField } from "@mui/material";
 import isEmpty from "is-empty";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PetsController } from "../controllers/Pets.controller";
+import { PetsController } from "../../controllers/Pets.controller";
 
 const URL =
   "https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg";

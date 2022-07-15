@@ -17,14 +17,15 @@ export class PetsController {
   static registerNewPet = async ({ data, setLoading }) => {
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/pets/register`, {
+      const requestConfig =  {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(data),
-      });
+      }
+      const response = await fetch(`${BASE_URL}/pets/register`,requestConfig);
       const jsonResponse = await response.json();
       if (jsonResponse.id) {
         toast("success", "Registro exitoso");
@@ -73,7 +74,6 @@ export class PetsController {
       toast("success", "Eliminación exitosa");
       return true;
     } catch (err) {
-      console.log({ err });
       toast("warn", "No se pudo borrar la información");
       return false;
     } finally {

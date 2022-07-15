@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthController } from "../controllers/Auth.controller";
+import { AuthController } from "../../controllers/Auth.controller";
 import isEmpty from "is-empty";
-import { EMAIL_PATTERN } from '../constants'
+import { EMAIL_PATTERN } from '../../constants'
 
 export const Register = () => {
   const [registerData, setRegisterData] = useState({
