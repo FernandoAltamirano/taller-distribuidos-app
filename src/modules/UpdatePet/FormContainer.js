@@ -120,7 +120,7 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
         }}
       >
         <h1>Editar información</h1>
-        <div className="form-container">
+        <div className="form-container grid">
           <TextField
             error={errors.code}
             value={petData?.code}
