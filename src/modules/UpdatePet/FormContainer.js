@@ -1,13 +1,9 @@
 import { Button, MenuItem, TextField } from "@mui/material";
 import isEmpty from "is-empty";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { PetsController } from "../../controllers/Pets.controller";
 
-const URL =
-  "https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg";
 export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
-  const navigate = useNavigate();
   const [petData, setPetData] = useState({
     code: "",
     name: "",
@@ -15,7 +11,7 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
     size: "",
     activity: "",
     gender: "",
-    img: URL,
+    img: "",
     description: "",
   });
   const [errors, setErrors] = useState({});
@@ -110,15 +106,7 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
   ];
   return (
     <div className="layout-page modal-container update-pet-modal">
-      <div
-        style={{
-          width: "70%",
-          backgroundColor: "white",
-          margin: "0 auto",
-          borderRadius: "3rem",
-          padding: "3rem",
-        }}
-      >
+      <div>
         <h1>Editar información</h1>
         <div className="form-container grid">
           <TextField

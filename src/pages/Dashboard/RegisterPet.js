@@ -3,11 +3,11 @@ import isEmpty from "is-empty";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PetsController } from "../../controllers/Pets.controller";
+import { chargePreviewImage, uploadImage } from "../../helpers";
 
-const URL =
-  "https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg";
 export const RegisterPet = () => {
   const navigate = useNavigate();
+  const [file, setFile] = useState(null);
   const [petData, setPetData] = useState({
     code: "",
     name: "",
@@ -15,7 +15,7 @@ export const RegisterPet = () => {
     size: "",
     activity: "",
     gender: "",
-    img: URL,
+    img: "",
     description: "",
   });
   const [errors, setErrors] = useState({});
@@ -34,16 +34,20 @@ export const RegisterPet = () => {
     }
   }, [petData]);
 
-  const handleRegisterPet = async () => {
-    const errors = customValidations();
-    if (!isEmpty(errors)) return;
+  const executeSendData = async (url) => {
     const response = await PetsController.registerNewPet({
-      data: petData,
+      data: { ...petData, img: url },
       setLoading,
     });
     if (response) {
       navigate("/mascotas");
     }
+  };
+  const handleRegisterPet = async () => {
+    const errors = customValidations();
+    if (!isEmpty(errors)) return;
+    setLoading(true);
+    await uploadImage({ file, setPetData, petData, executeSendData });
   };
   const customValidations = () => {
     let errors = {};
@@ -65,7 +69,7 @@ export const RegisterPet = () => {
     if (isEmpty(petData.gender)) {
       errors.gender = true;
     }
-    if (isEmpty(petData.img)) {
+    if (isEmpty(file)) {
       errors.img = true;
     }
     if (isEmpty(petData.description)) {
@@ -104,6 +108,18 @@ export const RegisterPet = () => {
       label: "Hembra",
     },
   ];
+
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleChargePreviewImage = (ev) => {
+    if (!isEmpty(ev.target.files)) {
+      setFile(ev.target.files[0]);
+      chargePreviewImage(ev, setPreviewImage);
+    }
+  };
+  const handleDeletePreviewImage = () => {
+    setPreviewImage(null);
+  };
   return (
     <div className="layout-page register-pet-page">
       <h1>Mascotas</h1>
@@ -182,6 +198,17 @@ export const RegisterPet = () => {
           label="Descripción"
           onChange={handleSetPetData}
         />
+        <input type="file" name="" id="" onChange={handleChargePreviewImage} />
+        {previewImage && (
+          <div>
+            <img
+              width="150px"
+              src={previewImage.data}
+              alt={previewImage.name}
+            />
+            <button onClick={handleDeletePreviewImage}>delete image</button>
+          </div>
+        )}
       </div>
       <div className="btn-container-pets-page">
         <Button
@@ -193,7 +220,6 @@ export const RegisterPet = () => {
           Registrar
         </Button>
       </div>
-      <img className="floating-dog" width="300px" src="/dog.png" alt="" />
     </div>
   );
 };

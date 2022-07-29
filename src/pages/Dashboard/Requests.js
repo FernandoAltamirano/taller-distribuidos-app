@@ -4,25 +4,27 @@ import { Loader, Table } from "../../components";
 import { TextField, Button, MenuItem, Menu } from "@mui/material";
 import { DeletePetModal, UpdateForm } from "../../modules";
 import ReplayIcon from "@mui/icons-material/Replay";
-import  RequestsController  from "../../controllers/Requests.controller";
+import RequestsController from "../../controllers/Requests.controller";
 import { RequestDetails } from "../../modules/AcceptRejectRequest";
 
 export const Requests = () => {
   const [requests, setRequests] = useState([]);
   const [filteredRequests, setFilteredRequests] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [action, setAction] = useState(null);
   const [selectedRequestData, setSelectedRequestData] = useState(null);
   const filterRef = useRef("");
 
-  const getAllRequests = () => RequestsController.getAllRequests({setLoading,setRequests,setFilteredRequests})
-
+  const getAllRequests = () =>
+    RequestsController.getAllRequests({
+      setLoading,
+      setRequests,
+      setFilteredRequests,
+    });
 
   const handleDeleteData = () => {
-    setSelectedRequestData(null)
-  }
+    setSelectedRequestData(null);
+  };
   const handleReloadData = () => getAllRequests();
-
 
   const handleResetFilter = () => {
     filterRef.current.value = "";
@@ -32,9 +34,11 @@ export const Requests = () => {
   const handleSearchByFilter = () => {
     const filterValue = filterRef.current.value;
     if (filterValue !== "") {
-      const filteredRequests = requests.filter((request) => request.user.email.toLowerCase().includes(filterValue.toLowerCase()));
+      const filteredRequests = requests.filter((request) =>
+        request.user.email.toLowerCase().includes(filterValue.toLowerCase())
+      );
       setFilteredRequests(filteredRequests);
-    }else{
+    } else {
       setFilteredRequests(requests);
     }
   };
@@ -52,12 +56,12 @@ export const Requests = () => {
     {
       tag: "",
       title: "Nombre de solicitante",
-      cell: (data) => <p>{data.user.firstname}</p>
+      cell: (data) => <p>{data.user.firstname}</p>,
     },
     {
       tag: "",
       title: "Email de solicitante",
-      cell: (data) => <p>{data.user.email}</p>
+      cell: (data) => <p>{data.user.email}</p>,
     },
     {
       tag: "address",
@@ -113,21 +117,24 @@ export const Requests = () => {
               </div>
             </div>
             <div className="table-container-scroll">
-              {!loading ? <Table slots={tableSlots} data={filteredRequests} actionRow={selectRequest} /> : <Loader />}
+              {!loading ? (
+                <Table
+                  slots={tableSlots}
+                  data={filteredRequests}
+                  actionRow={selectRequest}
+                />
+              ) : (
+                <Loader />
+              )}
             </div>
           </div>
         </div>
       </div>
       <RequestDetails
-        // getAllPets={getAllPets}
         data={selectedRequestData}
         deleteData={handleDeleteData}
+        getAllRequests={getAllRequests}
       />
-      {/* <DeletePetModal
-        deleteData={handleDeleteData}
-        handleDeletePet={handleDeletePet}
-        id={action === "DELETE" ? selectedPetData?.id : null}
-      /> */}
     </>
   );
 };

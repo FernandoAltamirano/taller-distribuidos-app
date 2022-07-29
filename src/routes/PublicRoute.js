@@ -1,11 +1,15 @@
 import { Navigate } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 
 export const PublicRoute = ({ redirectPath = "/mascotas", children }) => {
-  const state = useSelector(state => state.User)
+  const state = useSelector((state) => state.User);
 
   if (state?.user) {
-    return <Navigate to={redirectPath} replace />;
+    return state.user?.name ? (
+      <Navigate to={redirectPath} replace />
+    ) : (
+      <Navigate to="/portal" replace />
+    );
   }
   return children;
 };

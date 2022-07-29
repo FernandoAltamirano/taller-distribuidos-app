@@ -56,7 +56,10 @@ export default function App() {
           <Route path="/portal">
             <Route path="/portal" element={<Landing />} />
             <Route path="/portal/galeria" element={<Galery />} />
-            <Route path="/portal/galeria/detalles" element={<PetDetails />} />
+            <Route
+              path="/portal/galeria/detalles/:id"
+              element={<PetDetails />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

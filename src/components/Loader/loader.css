@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
 }
 .metronome {
@@ -68,6 +69,10 @@
 
 .metronome__dot:nth-child(4)::before {
   transform: scale(0.7);
+}
+
+.metronome-container p{
+  color:var(--primary-color);
 }
 
 @keyframes swing {

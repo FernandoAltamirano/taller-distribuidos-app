@@ -1,14 +1,18 @@
 
 /*Cabecera de la pagina*/
-.cabecera {
-    width: 100%;
+.cabecera{
+    background-color: var(--primary-color);
+}
+.cabecera >div{
+    width: 70%;
     display: flex;
-    background-color: #db2263;
+    margin: auto;
+    padding: 1rem 0;
 }
 
 .heade {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     text-align: center;
     padding: 12px;
     width: 100%;
@@ -28,6 +32,7 @@
 .enlaces {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 .enlaces div a{
     text-decoration: none;
@@ -82,7 +87,8 @@
 
 /*Para la pagina principal (index)*/
 main {
-    width: 100%;
+    width: 70%;
+    margin: auto;
 }
 #portada {
     padding: 20px;
@@ -93,9 +99,13 @@ main {
     display: flex;
     background-color: rgb(204, 233, 233);
 }
+.tresperritos{
+    display: flex;
+    align-items: center;
+}
 .tresperritos img{
     margin: 40px;
-    width: 700px;
+    width: 400px;
     border-radius: 10px;
     height: auto;
 }
@@ -126,19 +136,22 @@ main {
     padding-top: 12px;
 }
 .ofrecemos-casillas{
-    display: flex;
-    padding: 20px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3,33%);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 } 
 .ofrecemos-casillas img {
-    width:300px;
-    height:300px;
+    width:250px;
+    height:250px;
     border-radius:150px;
     border: 8px solid #666;
 }
 .ofrecemos-casillas div h3 {
     padding: 12px;
 }
-.ofrecemos-casillas div P {
+.ofrecemos-casillas div p {
     text-align: justify;
     padding: 0px 20px;
 }
@@ -150,37 +163,32 @@ main {
 #galery-selection{
     display: flex;
 }
-aside{
-    position: relative;
-    width: 20%;
-}
 #galery-grid{
-    width: 80%;
-    margin: 30px;
+    width: 90%;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: repeat(4,1fr);
+    gap: 2rem;
+    min-height: 500px;
+    margin: 3rem auto;
 }
 .galery-grid-item{
     border-radius: 4px;
-    margin: 10px;
     display: block;
     text-align: center;
-    padding: 20px;
 }
 .galery-grid-item img{
     width: 200px;
     height: 200px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 .galery-choose-item {
-    display: flex;
     padding: 10px;
-    justify-content: center;
+    margin: auto;
 }
-.galery-choose-item div{
+.galery-choose-item a{
     display: flex;
     justify-content: center;
-    width: 70%;
     background-color: #aad1da;
     padding: 2px;
     border-radius: 100px;
@@ -219,12 +227,25 @@ aside{
    border-top-right-radius: 40px;
 }
 
+.galery-grid-item a:hover{
+    transform: scale(1.1);
+    transition: 300ms all;
+    cursor: pointer;
+}
+.galery-grid-item a{
+    width: 100%;
+}
+.galery-grid-item a{
+    text-decoration: none;
+    color: var(--black-color);
+    margin-right: 5px;
+}
+
 /*Para la ficha (ficha)*/
 .ficha-todos img{
     width: 100%;
 }
 #ficha-return{
-    background-color: rgb(209, 215, 219);
     display: flex;
     padding: 20px;
 }
@@ -249,6 +270,7 @@ aside{
     border: 2px solid sandybrown;
     width: 200px;
     height: 200px;
+    object-fit: cover;
 }
 .ficha-descripcion{
     display: flex;
@@ -272,15 +294,17 @@ aside{
     grid-template-columns: 33% 33% 33%;
     justify-items: center;
 }
-#ficha-caracter div{
-    background-color: rgb(246, 241, 241);
-    text-align: center;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-#ficha-caracter div div{
+
+#ficha-caracter .title-ficha{
     padding: 12px;
     background-color: #db2263;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    min-width: 300px;
+}
+#ficha-caracter .ficha-contenido > div{
+    margin: 10px;
 }
 #ficha-caracter div table{
     padding: 10px;
@@ -303,6 +327,11 @@ aside{
     background-color: #b1e9ec;
     padding: 6px;
     border-radius: 100px;
+}
+.ficha-obtener > div:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: 300ms all;
 }
 .ficha-obtener h2{
     padding-top: 8px;
@@ -389,6 +418,9 @@ footer div h2 {
     padding: 10px;
 }
 .footer-enlaces {
+    width: 20%;
+    margin: auto;
+    padding: 2rem 0;
     display: flex;
     justify-content: space-evenly;
 }

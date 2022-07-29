@@ -3,10 +3,10 @@ import isEmpty from "is-empty";
 import { useEffect, useState } from "react";
 import { Modal } from "../../components";
 import { RequestDetailsInfo } from "./RequestDetailsInfo";
-import RequestsController from '../../controllers/Requests.controller'
+import RequestsController from "../../controllers/Requests.controller";
 
-export const RequestDetails = ({ data, deleteData, getAllPets }) => {
-  const [loading,setLoading] = useState(false)
+export const RequestDetails = ({ data, deleteData, getAllRequests }) => {
+  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -20,13 +20,25 @@ export const RequestDetails = ({ data, deleteData, getAllPets }) => {
     }
   }, [data?.id]);
 
-  const handleExecuteAction = (type) => {
-    RequestsController.handleStatusRequest({setLoading,id:data.id,type})
-  }
+  const handleExecuteAction = async (type) => {
+    const response = await RequestsController.handleStatusRequest({
+      setLoading,
+      id: data.id,
+      type,
+    });
+    if (response) {
+      handleClose();
+      getAllRequests();
+    }
+  };
 
   return (
     <Modal open={open} handleClose={handleClose}>
-      <RequestDetailsInfo data={data} handleExecuteAction={handleExecuteAction} loading={loading} /> 
+      <RequestDetailsInfo
+        data={data}
+        handleExecuteAction={handleExecuteAction}
+        loading={loading}
+      />
     </Modal>
   );
 };

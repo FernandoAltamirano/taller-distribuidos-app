@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "./Layout";
+import Layout from "../../components/Layouts/Landing";
 import "./styles.css";
 export const Landing = () => {
   return (

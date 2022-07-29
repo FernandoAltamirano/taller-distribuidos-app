@@ -14,18 +14,29 @@ export class PetsController {
       setLoading(false);
     }
   };
-  static registerNewPet = async ({ data, setLoading }) => {
+  static getPetById = async ({ setLoading, setPet, id }) => {
     setLoading(true);
     try {
-      const requestConfig =  {
+      const response = await fetch(`${BASE_URL}/pets/${id}`);
+      const pet = await response.json();
+      setPet(pet);
+    } catch (err) {
+      toast("warn", "No se pudo cargar los datos de la mascota");
+    } finally {
+      setLoading(false);
+    }
+  };
+  static registerNewPet = async ({ data, setLoading }) => {
+    try {
+      const requestConfig = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(data),
-      }
-      const response = await fetch(`${BASE_URL}/pets/register`,requestConfig);
+      };
+      const response = await fetch(`${BASE_URL}/pets/register`, requestConfig);
       const jsonResponse = await response.json();
       if (jsonResponse.id) {
         toast("success", "Registro exitoso");
