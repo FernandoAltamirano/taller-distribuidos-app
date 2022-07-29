@@ -3,32 +3,35 @@ import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthController } from "../../controllers/Auth.controller";
 import isEmpty from "is-empty";
-import { EMAIL_PATTERN } from '../../constants'
+import { EMAIL_PATTERN } from "../../constants";
 
 export const Register = () => {
-  const [registerData, setRegisterData] = useState({
-    name: "",
-    address: "",
-    email: "",
-    password: "",
-  });
+  const [registerData, setRegisterData] = useState({});
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const confirmPasswordRef = useRef(null);
+  const [isInstitution, setIsInstitution] = useState(false);
   const navigate = useNavigate();
 
   const customValidations = () => {
     let errors = {};
-    if (isEmpty(registerData.name)) {
-      errors.name = true;
+    if (isEmpty(registerData.first)) {
+      errors.first = true;
     }
-    if (isEmpty(registerData.address)) {
-      errors.address = true;
+    if (isEmpty(registerData.second)) {
+      errors.second = true;
     }
-    if (isEmpty(registerData.email) || !EMAIL_PATTERN.test(registerData.email)) {
+    if (
+      isEmpty(registerData.email) ||
+      !EMAIL_PATTERN.test(registerData.email)
+    ) {
       errors.email = true;
     }
-    if (isEmpty(registerData.password) || registerData.password.length < 8 || registerData.password.length > 20) {
+    if (
+      isEmpty(registerData.password) ||
+      registerData.password.length < 8 ||
+      registerData.password.length > 20
+    ) {
       errors.password = true;
     }
     if (
@@ -47,18 +50,43 @@ export const Register = () => {
       ...registerData,
       [ev.target.name]: ev.target.value,
     });
-    delete errors[ev.target.name]
+    delete errors[ev.target.name];
   };
 
   const handleRegisterData = async () => {
     const errors = customValidations();
     if (!isEmpty(errors)) return;
-    const response = await AuthController.registerInstitution({
-      data: registerData,
+    let data = { ...registerData };
+    if (isInstitution) {
+      data = {
+        ...data,
+        name: registerData.first,
+        address: registerData.second,
+        userType: "INSTITUTION",
+      };
+    } else {
+      data = {
+        ...data,
+        firstname: registerData.first,
+        lastname: registerData.second,
+      };
+    }
+    delete data["first"];
+    delete data["second"];
+    const response = await AuthController.register({
+      data,
       setLoading,
     });
     if (response) {
       navigate("/inicia-sesion");
+    }
+  };
+
+  const handleChangeisInstitution = (ev) => {
+    if (ev.target.checked) {
+      setIsInstitution(true);
+    } else {
+      setIsInstitution(false);
     }
   };
 
@@ -70,13 +98,29 @@ export const Register = () => {
   return (
     <div className="auth-form-container">
       <h1>Regístrate</h1>
+      <div
+        className="flex"
+        style={{ justifyContent: "flex-end", gap: "1rem", margin: "1rem 0" }}
+      >
+        <p>Registrar como institución</p>
+        <input type="checkbox" onChange={handleChangeisInstitution} id="" />
+      </div>
       <div className="flex-column form-container">
         <TextField
-          error={errors.name}
-          value={registerData.name}
+          error={errors.first}
+          value={registerData.first}
           required
-          name="name"
-          label="Nombres"
+          name="first"
+          label={isInstitution ? "Nombres" : "Primer nombre"}
+          variant="outlined"
+          onChange={handleChangeRegisterData}
+        />
+        <TextField
+          error={errors.second}
+          value={registerData.second}
+          required
+          name="second"
+          label={isInstitution ? "Dirección" : "Apellidos"}
           variant="outlined"
           onChange={handleChangeRegisterData}
         />
@@ -87,15 +131,6 @@ export const Register = () => {
           name="email"
           type="email"
           label="Correo"
-          variant="outlined"
-          onChange={handleChangeRegisterData}
-        />
-        <TextField
-          error={errors.address}
-          value={registerData.address}
-          required
-          name="address"
-          label="Dirección"
           variant="outlined"
           onChange={handleChangeRegisterData}
         />

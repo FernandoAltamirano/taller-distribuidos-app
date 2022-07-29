@@ -18,12 +18,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--gray);
 }
-
+a{
+  text-decoration: none;
+  color: var(--black-color);
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+button:disabled{
+  opacity: 0.5!important;
+  cursor: default;
+}
 /* GLOBAL CSS */
 .grid {
   display: grid;
@@ -52,10 +59,17 @@ code {
 }
 
 .modal-container {
-  margin: 2em auto 0;
+  margin: 0 auto;
   padding: 1em 2em 2em 2em;
-  border-radius: 10px;
-  /* background-color: var(--white-color); */
+  border-radius: 3rem;
+}
+
+.layout-page.modal-container > div:first-child {
+  width: 70%;
+  background-color: var(--white-color);
+  margin: 0 auto;
+  border-radius: 3rem;
+  padding: 3rem;
 }
 
 .css-sghohy-MuiButtonBase-root-MuiButton-root:disabled {
@@ -314,4 +328,25 @@ code {
   background-color: var(--gray);
   transition: 200ms all;
   cursor: pointer;
+}
+
+
+.send-request-pet-modal{
+  width: 85%;
+}
+
+.container-grid-image-send-request img{
+  margin: auto;
+}
+
+.login-modal{
+  width: 30%;
+}
+
+.layout-page.modal-container.login-modal .auth-form-container,
+.layout-page.modal-container.login-modal .auth-form-container .auth-form-container-link a{
+  color: var(--black-color)!important;
+}
+.layout-page.modal-container.login-modal .auth-form-container h1{
+  margin-bottom: 1rem;
 }

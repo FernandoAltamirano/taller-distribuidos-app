@@ -1,54 +1,76 @@
 import { Button, Divider, Grid } from "@mui/material";
 
-export const RequestDetailsInfo = ({ data,handleExecuteAction,loading }) => {
+export const RequestDetailsInfo = ({ data, handleExecuteAction, loading }) => {
   return (
-    <div className="layout-page modal-container" style={{width:"60%",background:"white"}}>
+    <div
+      className="layout-page modal-container"
+      style={{ width: "40%", background: "white" }}
+    >
       <h1>Datos de usuario</h1>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} style={{ padding: "20px 0", width: "100%" }}>
         <Grid item xs={6}>
-          <p>Nombres: {data.user.firstname}</p>
+          <p>
+            <strong> Nombres:</strong> {data.user.firstname}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>Apellidos: {data.user.lastname}</p>
+          <p>
+            <strong>Apellidos:</strong> {data.user.lastname}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>Correo electrónico: {data.user.email}</p>
+          <p>
+            <strong>Correo electrónico:</strong> {data.user.email}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>Dirección: {data.address}</p>
+          <p>
+            <strong>Dirección:</strong> {data.address}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>Teléfono: {data.phone}</p>
+          <p>
+            <strong>Teléfono:</strong> {data.phone}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>País: {data.country}</p>
+          <p>
+            <strong>País:</strong> {data.country}
+          </p>
         </Grid>
       </Grid>
-      <Divider/>
+      <Divider />
       <h1>Datos de solicitud</h1>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} style={{ padding: "0", width: "100%" }}>
         <Grid item xs={6}>
-          <p>ID: {data.id}</p>
+          <p>
+            <strong>ID:</strong> {data.id}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>Fecha de aplicación: {data.application_date}</p>
+          <p>
+            <strong>Fecha de aplicación:</strong> {data.application_date}
+          </p>
         </Grid>
         <Grid item xs={6}>
-          <p>Estado: {data.status}</p>
+          <p>
+            <strong>Estado:</strong> {data.status}
+          </p>
         </Grid>
       </Grid>
-      <div>
+      <div className="btn-container-pets-page">
         <Button
-        disabled={loading}
-        onClick={() => handleExecuteAction("Aceptado")}
-        className="btn-base"
-        variant="contained"
+          disabled={loading}
+          onClick={() => handleExecuteAction("Aceptado")}
+          className="btn-base"
+          variant="contained"
+          style={{ marginRight: "20px" }}
         >
           Aceptar
         </Button>
         <Button
           disabled={loading}
-          onClick={() => handleExecuteAction("Aceptado")}
+          onClick={() => handleExecuteAction("Rechazado")}
           className="btn-base-outlined"
           variant="outlined"
         >

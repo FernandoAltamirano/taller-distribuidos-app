@@ -5,13 +5,16 @@ import ArticleIcon from "@mui/icons-material/Article";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./sidebar.css";
 
 export const Sidebar = ({ signOut }) => {
-  const location = useLocation()
+  const state = useSelector((state) => state.User);
+  const location = useLocation();
   const [toggleShow, setToggleShow] = useState(false);
 
-  const handleItemActive = (item) => location.pathname.slice(1) === item ? "element-active" : ""
+  const handleItemActive = (item) =>
+    location.pathname.slice(1) === item ? "element-active" : "";
   return (
     <div className={toggleShow ? "sidebar open" : "sidebar"}>
       <div className="logo-details">
@@ -53,7 +56,7 @@ export const Sidebar = ({ signOut }) => {
             <i>
               <AccountCircleIcon width="30" color="var(--primary-color)" />
             </i>
-            <p className="name">Administrador</p>
+            <p className="name">{state.user.name}</p>
           </div>
           <ExitToAppIcon
             onClick={signOut}

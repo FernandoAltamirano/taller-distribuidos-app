@@ -2,10 +2,10 @@ import isEmpty from "is-empty";
 import { BASE_URL } from "../constants/baseUrl";
 import { toast } from "../helpers";
 export class AuthController {
-  static registerInstitution = async ({ data, setLoading }) => {
+  static register = async ({ data, setLoading }) => {
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/auth/register-institution`, {
+      const response = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,10 +26,10 @@ export class AuthController {
       setLoading(false);
     }
   };
-  static loginInstitution = async ({ data, setLoading }) => {
+  static login = async ({ data, setLoading }) => {
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/auth/login-institution`, {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

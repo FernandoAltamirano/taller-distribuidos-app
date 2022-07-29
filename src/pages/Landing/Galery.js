@@ -1,8 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Layout from "./Layout";
-
+import Layout from "../../components/Layouts/Landing";
+import { PetsController } from "../../controllers/Pets.controller";
+import { Loader } from "../../components";
+import "./styles.css";
 function Galery() {
+  const [availablePets, setAvailablePets] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    PetsController.getAllPets({ setLoading, setPets: setAvailablePets });
+  }, []);
+
   return (
     <Layout>
       <main>
@@ -11,94 +22,27 @@ function Galery() {
             <img src="/images/galeria.png" alt="" />
           </figure>
         </div>
-        <div id="galery-selection">
-          <aside>
-            <h3>Filtrar por</h3>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              ex, nam temporibus quis pariatur sequi. Ullam, nihil in dolorum
-              minus, voluptatibus expedita deleniti iste neque ab nulla
-              asperiores, numquam aliquid.
-            </p>
-          </aside>
+        {loading ? (
+          <div style={{ minHeight: "500px" }}>
+            <Loader message="Cargando mascotas disponibles" />
+          </div>
+        ) : (
           <section id="galery-grid">
-            <div class="galery-grid-item">
-              <img src="/images/perrito1.jpg" alt="" />
-              <div class="galery-choose-item">
-                <div class="querer">
-                  <h2>
-                    <Link to="/portal/galeria/detalles">¡Lo quiero!</Link>
-                  </h2>
-                  <img src="/images/patita.png" alt="" />
+            {availablePets.map((pet) => {
+              return (
+                <div class="galery-grid-item">
+                  <img src={pet.img} alt="" />
+                  <div class="galery-choose-item">
+                    <Link to={`/portal/galeria/detalles/${pet.id}`}>
+                      <h2>¡Lo quiero!</h2>
+                      <img src="/images/patita.png" alt="" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="galery-grid-item">
-              <img src="/images/perrito2.png" alt="" />
-              <div class="galery-choose-item">
-                <div class="querer">
-                  <h2>¡Lo quiero!</h2>
-                  <a href="./ficha.html">
-                    <img src="/images/patita.png" alt="" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="galery-grid-item">
-              <img src="/images/perrito3.png" alt="" />
-              <div class="galery-choose-item">
-                <div class="querer">
-                  <h2>¡Lo quiero!</h2>
-                  <a href="./ficha.html">
-                    <img src="/images/patita.png" alt="" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="galery-grid-item">
-              <img src="/images/perrito4.png" alt="" />
-              <div class="galery-choose-item">
-                <div class="querer">
-                  <h2>¡Lo quiero!</h2>
-                  <img src="/images/patita.png" alt="" />
-                </div>
-              </div>
-            </div>
-            <div class="galery-grid-item">
-              <img src="/images/perrito5.jpg" alt="" />
-              <div class="galery-choose-item">
-                <div class="querer">
-                  <h2>¡Lo quiero!</h2>
-                  <img src="/images/patita.png" alt="" />
-                </div>
-              </div>
-            </div>
-            <div class="galery-grid-item">
-              <img src="/images/perrito6.jpg" alt="" />
-              <div class="galery-choose-item">
-                <div class="querer">
-                  <h2>¡Lo quiero!</h2>
-                  <img src="/images/patita.png" alt="" />
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </section>
-        </div>
-        <div id="galery-mas-items">
-          <div class="galery-atras">
-            <a href="#">
-              <img src="/images/atras.png" alt="atras" />
-            </a>
-            <h2>Anterior</h2>
-          </div>
-          <div class="galery-adelante">
-            <h2>Siguiente</h2>
-            <a href="#">
-              <img src="/images/adelante.png" alt="adelante" />
-            </a>
-          </div>
-        </div>
+        )}
       </main>
     </Layout>
   );
