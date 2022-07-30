@@ -4,7 +4,7 @@ import Layout from "../../components/Layouts/Landing";
 import { PetsController } from "../../controllers/Pets.controller";
 import { SendRequestModal } from "../../modules/SendRequest";
 
-function PetDetails() {
+export const PetDetails = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(null);
@@ -21,7 +21,7 @@ function PetDetails() {
     <>
       <Layout>
         <main>
-          <div class="ficha-todos">
+          <div className="ficha-todos">
             <img src="/images/ficha.png" alt="adopta, salvalos y dales amor" />
           </div>
           <Link to="/portal/galeria">
@@ -34,10 +34,10 @@ function PetDetails() {
           </Link>
           <div id="ficha-principal">
             <div id="ficha-portada">
-              <div class="ficha-foto">
+              <div className="ficha-foto">
                 <img src={pet?.img} alt="" />
               </div>
-              <div class="ficha-descripcion">
+              <div className="ficha-descripcion">
                 <div>
                   <h1>{pet?.name}</h1>
                   <p>3 años</p>
@@ -53,7 +53,7 @@ function PetDetails() {
               </div>
             </div>
             <div id="ficha-caracter">
-              <div class="ficha-uno">
+              <div className="ficha-uno">
                 <div className="title-ficha">
                   <h2>CARACTERÍSTICAS</h2>
                 </div>
@@ -76,11 +76,11 @@ function PetDetails() {
                   </div>
                 </div>
               </div>
-              <div class="ficha-dos">
+              <div className="ficha-dos">
                 <div className="title-ficha">
                   <h2>SALUD</h2>
                 </div>
-                <table class="default">
+                <table className="default">
                   <tr>
                     <td>Alergia</td>
                     <td>No</td>
@@ -95,7 +95,7 @@ function PetDetails() {
                   </tr>
                 </table>
               </div>
-              <div class="ficha-tres">
+              <div className="ficha-tres">
                 <div className="title-ficha">
                   <h2>HISTORIA</h2>
                 </div>
@@ -103,7 +103,7 @@ function PetDetails() {
               </div>
             </div>
           </div>
-          <div class="ficha-obtener">
+          <div className="ficha-obtener">
             <div onClick={handleSendRequest}>
               <h2>¡Lo quiero!</h2>
               <span>
@@ -122,6 +122,4 @@ function PetDetails() {
       )}
     </>
   );
-}
-
-export default PetDetails;
+};

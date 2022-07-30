@@ -6,7 +6,10 @@ import Layout from "../../components/Layouts/Landing";
 import { PetsController } from "../../controllers/Pets.controller";
 import { Loader } from "../../components";
 import "./styles.css";
-function Galery() {
+import { useSelector } from "react-redux";
+import isEmpty from "is-empty";
+export const Galery = () => {
+  const state = useSelector((state) => state.User);
   const [availablePets, setAvailablePets] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +20,7 @@ function Galery() {
   return (
     <Layout>
       <main>
-        <div class="galery-portada">
+        <div className="galery-portada">
           <figure>
             <img src="/images/galeria.png" alt="" />
           </figure>
@@ -30,14 +33,16 @@ function Galery() {
           <section id="galery-grid">
             {availablePets.map((pet) => {
               return (
-                <div class="galery-grid-item">
+                <div className="galery-grid-item">
                   <img src={pet.img} alt="" />
-                  <div class="galery-choose-item">
-                    <Link to={`/portal/galeria/detalles/${pet.id}`}>
-                      <h2>¡Lo quiero!</h2>
-                      <img src="/images/patita.png" alt="" />
-                    </Link>
-                  </div>
+                  {isEmpty(state?.user?.name) && (
+                    <div className="galery-choose-item">
+                      <Link to={`/portal/galeria/detalles/${pet.id}`}>
+                        <h2>¡Lo quiero!</h2>
+                        <img src="/images/patita.png" alt="" />
+                      </Link>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -46,6 +51,4 @@ function Galery() {
       </main>
     </Layout>
   );
-}
-
-export default Galery;
+};

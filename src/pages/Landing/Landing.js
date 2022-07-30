@@ -1,21 +1,39 @@
 import React from "react";
 import Layout from "../../components/Layouts/Landing";
+import { Carousel } from "react-responsive-carousel";
 import "./styles.css";
+import ReturnUp from "../../components/ReturnUp";
 export const Landing = () => {
   return (
     <Layout>
       <main>
         <div id="portada">
-          <img src="/images/portada.png" alt="adopta, salvalos y dales amor" />
+          <Carousel
+            autoPlay
+            infiniteLoop
+            interval={3000}
+            swipeable
+            showThumbs={false}
+          >
+            <div>
+              <img src="/images/banner1.png" />
+            </div>
+            <div>
+              <img src="/images/banner5.png" />
+            </div>
+            <div>
+              <img src="/images/banner4.png" />
+            </div>
+          </Carousel>
         </div>
         <div id="acercade">
-          <div class="tresperritos">
+          <div className="tresperritos">
             <img
               src="/images/tresperritos.jpg"
               alt="adopta, salvalos y dales amor"
             />
           </div>
-          <div class="quienSon">
+          <div className="quienSon" id="quienes-somos">
             <div>
               <h1>¿Quiénes Somos?</h1>
               <br />{" "}
@@ -28,7 +46,7 @@ export const Landing = () => {
                 proyecto
               </p>
             </div>
-            <div class="quienSon-imagen">
+            <div className="quienSon-imagen">
               <figure>
                 <img src="/images/adoptar1.png" alt="" />
               </figure>
@@ -43,7 +61,7 @@ export const Landing = () => {
         </div>
         <div id="ofrecemos">
           <h2>¿Qué ofrecemos?</h2>
-          <div class="ofrecemos-casillas">
+          <div className="ofrecemos-casillas">
             <div>
               <img src="/images/ofrece1.png" alt="" />
               <h3>RESPETO CON LOS ANIMALES</h3>
@@ -78,6 +96,7 @@ export const Landing = () => {
           </div>
         </div>
       </main>
+      <ReturnUp />
     </Layout>
   );
 };

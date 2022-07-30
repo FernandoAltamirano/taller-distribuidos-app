@@ -8,7 +8,7 @@ export const PublicRoute = ({ redirectPath = "/mascotas", children }) => {
     return state.user?.name ? (
       <Navigate to={redirectPath} replace />
     ) : (
-      <Navigate to="/portal" replace />
+      <Navigate to="/" replace />
     );
   }
   return children;

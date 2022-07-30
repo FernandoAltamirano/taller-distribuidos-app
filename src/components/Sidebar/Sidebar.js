@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArticleIcon from "@mui/icons-material/Article";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./sidebar.css";
@@ -50,6 +51,18 @@ export const Sidebar = ({ signOut }) => {
           </Link>
           <span className="tooltip">Mascotas</span>
         </li>
+        <li>
+          <Link
+            to="/configuraciones"
+            className={handleItemActive("configuraciones")}
+          >
+            <i>
+              <SettingsIcon />
+            </i>
+            <span className="links_name">Configuraciones</span>
+          </Link>
+          <span className="tooltip">Configuraciones</span>
+        </li>
 
         <li className="profile">
           <div className="profile-details">
@@ -63,6 +76,7 @@ export const Sidebar = ({ signOut }) => {
             width="30"
             color="var(--primary-color)"
             cursor="pointer"
+            className="signout-icon"
           />
         </li>
       </ul>
