@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Loader, Table } from "../../components";
-import { TextField, Button, MenuItem, Menu } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { PetsController } from "../../controllers/Pets.controller";
 import { DeletePetModal, UpdateForm } from "../../modules";
 import ReplayIcon from "@mui/icons-material/Replay";
+import AddIcon from "@mui/icons-material/Add";
 
 export const Pets = () => {
   const [pets, setPets] = useState([]);
@@ -53,7 +54,6 @@ export const Pets = () => {
     setSelectedPetData(petDataById);
   };
 
-
   const tableSlots = [
     {
       tag: "code",
@@ -97,8 +97,10 @@ export const Pets = () => {
       <div className="layout-page">
         <h1>Mascotas</h1>
         <div>
-          <span>Descripcion </span>
-          <Link to="/mascotas/registrar">Registrar nuevo {">"}</Link>
+          <Link className="add-pet-button" to="/mascotas/registrar">
+            <AddIcon />
+            <span>Añadir nueva mascota</span>
+          </Link>
 
           <div className="pets-table-container">
             <div className="flex reset-button-container">
@@ -108,8 +110,9 @@ export const Pets = () => {
               <div className="filters-container-input">
                 <TextField
                   inputRef={filterRef}
-                  label="Buscar"
+                  label="Buscar por código de mascota"
                   variant="outlined"
+                  type="search"
                 />
               </div>
               <div className="flex" style={{ columnGap: "10px" }}>

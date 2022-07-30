@@ -40,7 +40,7 @@ export const LoginContainer = ({ isModal, handleClose }) => {
       const { token, ...restValues } = response;
       dp(setUser(restValues));
       localStorage.setItem("token", token);
-      navigate("/mascotas");
+      navigate("/");
     }
   };
 

@@ -133,6 +133,7 @@ export const Register = () => {
           label="Correo"
           variant="outlined"
           onChange={handleChangeRegisterData}
+          autoComplete="off"
         />
         <TextField
           error={errors.password}
@@ -142,6 +143,7 @@ export const Register = () => {
           label="Contraseña"
           variant="outlined"
           onChange={handleChangeRegisterData}
+          autoComplete="new-password"
         />
         <TextField
           error={errors.confirmPassword}

@@ -28,6 +28,7 @@ export const LoginForm = ({
           label="Correo"
           variant="outlined"
           onChange={handleChangeLoginData}
+          autoComplete="off"
         />
         <TextField
           error={errors.password}
@@ -36,6 +37,7 @@ export const LoginForm = ({
           label="Contraseña"
           variant="outlined"
           onChange={handleChangeLoginData}
+          autoComplete="new-password"
         />
       </div>
       <Button

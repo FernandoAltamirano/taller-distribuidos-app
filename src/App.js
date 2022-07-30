@@ -14,12 +14,13 @@ import {
   Register,
   RegisterPet,
   Requests,
+  PetDetails,
+  Galery,
+  Settings,
 } from "./pages";
 import { UserController } from "./controllers/User.controller";
 import { setUser } from "./redux/actions";
 import "react-toastify/dist/ReactToastify.css";
-import Galery from "./pages/Landing/Galery";
-import PetDetails from "./pages/Landing/PetDetails";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -41,25 +42,23 @@ export default function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<ProtectedRoute children={<LayoutDashboard />} />}
-          >
-            <Route path="/mascotas" element={<Pets />} />
-            <Route path="/mascotas/registrar" element={<RegisterPet />} />
-            <Route path="/solicitudes" element={<Requests />} />
-          </Route>
-          <Route path="/" element={<PublicRoute children={<LayoutAuth />} />}>
-            <Route path="/registrate" element={<Register />} />
-            <Route path="/inicia-sesion" element={<Login />} />
-          </Route>
-          <Route path="/portal">
-            <Route path="/portal" element={<Landing />} />
-            <Route path="/portal/galeria" element={<Galery />} />
+          <Route path="/">
+            <Route path="/" element={<Landing />} />
+            <Route path="/galeria" element={<Galery />} />
+            <Route path="/galeria/detalles/:id" element={<PetDetails />} />
             <Route
-              path="/portal/galeria/detalles/:id"
-              element={<PetDetails />}
-            />
+              path="/"
+              element={<ProtectedRoute children={<LayoutDashboard />} />}
+            >
+              <Route path="/mascotas" element={<Pets />} />
+              <Route path="/mascotas/registrar" element={<RegisterPet />} />
+              <Route path="/solicitudes" element={<Requests />} />
+              <Route path="/configuraciones" element={<Settings />} />
+            </Route>
+            <Route path="/" element={<PublicRoute children={<LayoutAuth />} />}>
+              <Route path="/registrate" element={<Register />} />
+              <Route path="/inicia-sesion" element={<Login />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

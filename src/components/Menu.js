@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { deleteUser } from "../redux/actions";
 export const MenuComponent = () => {
+  const state = useSelector((state) => state.User);
   const navigate = useNavigate();
   const dp = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -18,19 +19,26 @@ export const MenuComponent = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/inicia-sesion");
+    navigate("/");
     dp(deleteUser());
   };
 
   return (
-    <div className="menu-component">
+    <div
+      className={`menu-component ${
+        state?.user?.firstname ? "capitalize" : "lowercase"
+      }`}
+    >
       <Button
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Administrador <KeyboardArrowDownIcon />
+        {state?.user?.firstname
+          ? `${state.user.firstname} ${state.user.lastname}`
+          : state?.user?.email}{" "}
+        <KeyboardArrowDownIcon />
       </Button>
       <Menu
         id="basic-menu"
@@ -41,9 +49,10 @@ export const MenuComponent = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={() => navigate("/configuraciones")}>
+          Mi cuenta
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
       </Menu>
     </div>
   );

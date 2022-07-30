@@ -86,7 +86,6 @@ export const Requests = () => {
       <div className="layout-page">
         <h1>Solicitudes</h1>
         <div>
-          <span>Descripcion</span>
           <div className="pets-table-container">
             <div className="flex reset-button-container">
               <ReplayIcon onClick={handleReloadData} />
@@ -97,6 +96,7 @@ export const Requests = () => {
                   inputRef={filterRef}
                   label="Buscar por email de usuario"
                   variant="outlined"
+                  type="search"
                 />
               </div>
               <div className="flex" style={{ columnGap: "10px" }}>
