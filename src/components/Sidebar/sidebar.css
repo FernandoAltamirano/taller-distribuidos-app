@@ -186,6 +186,9 @@
   font-weight: 600;
   color: var(--white-color);
   white-space: nowrap;
+  max-width: 135px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .sidebar li.profile .job {
   font-size: 12px;

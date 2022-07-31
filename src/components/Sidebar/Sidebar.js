@@ -8,6 +8,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./sidebar.css";
+import { Logo } from "../Logo";
 
 export const Sidebar = ({ signOut }) => {
   const state = useSelector((state) => state.User);
@@ -19,11 +20,7 @@ export const Sidebar = ({ signOut }) => {
   return (
     <div className={toggleShow ? "sidebar open" : "sidebar"}>
       <div className="logo-details">
-        <img
-          src="/logo.png"
-          alt="logo"
-          className={toggleShow ? "logo" : "logo hidden"}
-        />
+        <Logo className={toggleShow ? "logo" : "logo hidden"} titleHidden />
         <i
           className="bx bx-menu"
           id="btn"
@@ -69,7 +66,9 @@ export const Sidebar = ({ signOut }) => {
             <i>
               <AccountCircleIcon width="30" color="var(--primary-color)" />
             </i>
-            <p className="name">{state.user.name}</p>
+            <p className="name" title={state.user.name}>
+              {state.user.name}
+            </p>
           </div>
           <ExitToAppIcon
             onClick={signOut}
@@ -77,6 +76,7 @@ export const Sidebar = ({ signOut }) => {
             color="var(--primary-color)"
             cursor="pointer"
             className="signout-icon"
+            titleAccess="Cerrar sesión"
           />
         </li>
       </ul>

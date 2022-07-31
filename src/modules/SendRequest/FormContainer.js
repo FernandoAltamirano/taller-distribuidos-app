@@ -45,7 +45,6 @@ export const FormContainer = ({ data, handleClose }) => {
       country: "Perú",
       application_date: formatDateNumbersNow(),
     };
-
     const response = await RequestsController.sendNewRequest({
       setLoading,
       id: data.id,

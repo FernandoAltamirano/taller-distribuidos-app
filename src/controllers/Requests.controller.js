@@ -13,7 +13,7 @@ export default class RequestsController {
     try {
       const response = await fetch(`${BASE_URL}/request`);
       const requests = await response.json();
-      setRequests(requests);
+      setRequests(requests.reverse());
       setFilteredRequests(requests);
     } catch (err) {
       toast("warn", "No se pudo cargar las solicitudes");

@@ -141,6 +141,7 @@ export const Register = () => {
           required
           name="password"
           label="Contraseña"
+          type="password"
           variant="outlined"
           onChange={handleChangeRegisterData}
           autoComplete="new-password"

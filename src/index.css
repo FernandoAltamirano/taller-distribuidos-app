@@ -305,7 +305,7 @@ button:disabled{
 
 /* MODAL DELETE CONTAINER */
 .modal-delete-container {
-  width: 50%;
+  width: 20%;
   background-color: white;
   border-radius: 1rem;
   padding: 2rem;
@@ -415,4 +415,32 @@ button:disabled{
 
 .hidden{
   display: none;
+}
+
+/* REQUEST MODAL */
+.request-details-info-modal h2{
+margin-bottom: 1rem;
+margin-top: 2rem;
+}
+
+.grid-container-request-details{
+  margin: 2rem 0;
+}
+
+/* LOGO */
+.logo-container{
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img{
+  width: 70px;
+}
+.logo-container h2{
+  margin-left: 10px;
+}
+.logo-absolute-container{
+  position: absolute;
+  top: 30px;
+  left: 200px;
 }

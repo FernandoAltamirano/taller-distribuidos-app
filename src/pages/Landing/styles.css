@@ -9,14 +9,25 @@
     margin: auto;
     padding: 1rem 0;
 }
+@media (max-width:1250px) {
+    .cabecera > div{
+        width: 85%;
+    }
+}
 
 .heade {
     display: flex;
     justify-content: space-between;
     text-align: center;
     padding: 12px;
-    width: 100%;
-    
+    width: 100%;  
+}
+@media (max-width:1250px) {
+    .heade{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .title {
@@ -30,20 +41,37 @@
 
 .enlaces {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
     align-items: center;
+    width: 75%;
 }
 .enlaces div a{
     text-decoration: none;
     margin: 12px;
+    text-align: center;
     font-weight: 500;
     transition: 300ms all;
-    font-size: 18px;
+    font-size: 16px;
 }
 .enlaces div a:hover{
     opacity: .6;
 }
+@media (max-width:1250px) {
+    .enlaces{
+        justify-content: space-around;
+    }
+    .enlaces div a{
+        font-size: 14px;
+    }
+}
+@media (max-width:800px) {
+    .enlaces{
+        display: none;
+    }
+}
+
 .galeri a{
     color: azure;
 }
@@ -93,6 +121,17 @@ main {
     width: 70%;
     margin: auto;
 }
+@media (max-width:1250px) {
+main{
+    width: 80%;
+}
+}
+@media (max-width:500px) {
+main{
+    width: 100%;
+}
+}
+
 #portada {
     padding: 20px;
     text-align: center;
@@ -102,9 +141,17 @@ main {
     display: flex;
     background-color: rgb(204, 233, 233);
 }
+
+@media (max-width:1300px) {
+    #acercade{
+        flex-direction: column;
+    }
+}
+
 .tresperritos{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .tresperritos img{
     margin: 40px;
@@ -112,6 +159,13 @@ main {
     border-radius: 10px;
     height: auto;
 }
+@media (max-width:1250px) {
+    .tresperritos img{
+        width: 80%;
+    }
+
+}
+
 .quienSon {
     margin: 40px;
     text-align: justify;
@@ -119,6 +173,7 @@ main {
 .quienSon-imagen {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     padding: 20px;
     margin-top: 20px;
 }
@@ -131,17 +186,20 @@ main {
 }
 
 #ofrecemos {
-    display: inline-block;
     text-align: center;
 }
 #ofrecemos h2 {
-    font-size: 4em;
+    font-size: 2rem;
     padding-top: 12px;
 }
+.ofrecemos-casillas > div{
+    max-width: 300px;
+}
 .ofrecemos-casillas{
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     gap: 1rem;
-    grid-template-columns: repeat(3,33%);
     margin-top: 2rem;
     margin-bottom: 2rem;
 } 
@@ -166,20 +224,28 @@ main {
 #galery-selection{
     display: flex;
 }
-#galery-grid{
+#galery-container{
     width: 90%;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
     gap: 2rem;
     min-height: 500px;
     margin: 3rem auto;
 }
-.galery-grid-item{
+@media (max-width:800px) {
+    #galery-container{
+        justify-content: center;
+    }
+}
+
+.galery-container-item{
     border-radius: 4px;
     display: block;
     text-align: center;
 }
-.galery-grid-item img{
+.galery-container-item img{
     width: 200px;
     height: 200px;
     margin-bottom: 10px;
@@ -230,15 +296,15 @@ main {
    border-top-right-radius: 40px;
 }
 
-.galery-grid-item a:hover{
+.galery-container-item a:hover{
     transform: scale(1.1);
     transition: 300ms all;
     cursor: pointer;
 }
-.galery-grid-item a{
+.galery-container-item a{
     width: 100%;
 }
-.galery-grid-item a{
+.galery-container-item a{
     text-decoration: none;
     color: var(--black-color);
     margin-right: 5px;
@@ -266,11 +332,19 @@ main {
 #ficha-portada{
     display: flex;
     margin: 40px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
+@media (max-width:950px) {
+    #ficha-portada{
+        justify-content: center;
+    }
+
+}
+
 .ficha-foto img{
     padding: 20px;
-    border-radius: 4px;
-    border: 2px solid sandybrown;
+    border-radius: 99999px;
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -283,24 +357,32 @@ main {
     margin-left: 20px;
     text-align: justify;
 }
+.ficha-descripcion > p{
+    margin: 2rem 0;
+}
 .ficha-descripcion div{
     color: aliceblue;
     background-color: #5ec5ed;
-    border-bottom-right-radius: 60px;
-    border-bottom-left-radius: 60px;
+    border-radius: 20px;
     padding: 6px;
     text-align: center;
 }
 
 #ficha-caracter{
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+#ficha-caracter .ficha{
+    max-width: 300px;
+    min-height: 200px;
 }
 
 #ficha-caracter .title-ficha{
     padding: 12px;
-    background-color: #db2263;
+    background-color: var(--primary-color);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     text-align: center;
@@ -318,6 +400,14 @@ main {
     padding: 10px;
     text-align: justify;
 }
+
+@media (max-width:1250px) {
+    #ficha-caracter{
+
+    }
+
+}
+
 
 .ficha-obtener{
     display: flex;
@@ -417,7 +507,6 @@ footer {
     text-align: center;
 }
 footer div h2 {
-    font-weight: 800;
     padding: 10px;
 }
 .footer-enlaces {
@@ -431,4 +520,14 @@ footer div h2 {
     width: 30px;
     height: 30px;
     padding: 10px;
+}
+
+@media (max-width:700px) {
+    footer div h2 {
+        margin: 1rem 2rem;
+        font-size: 1.5rem;
+    }
+.footer-enlaces {
+flex-direction: column;
+}
 }
