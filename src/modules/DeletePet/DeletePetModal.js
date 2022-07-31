@@ -21,7 +21,7 @@ export const DeletePetModal = ({ deleteData, handleDeletePet, id }) => {
   return (
     <Modal open={open} handleClose={handleClose}>
       <div className="modal-container modal-delete-container">
-        <p>Deseas eliminar la mascota</p>
+        <strong>¿Esta seguro que quiere eliminar la mascota?</strong>
         <div className="btn-container-pets-page">
           <Button
             onClick={handleDeletePet}

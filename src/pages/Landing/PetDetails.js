@@ -24,7 +24,7 @@ export const PetDetails = () => {
           <div className="ficha-todos">
             <img src="/images/ficha.png" alt="adopta, salvalos y dales amor" />
           </div>
-          <Link to="/portal/galeria">
+          <Link to="/galeria">
             <div id="ficha-return">
               <span>
                 <img src="/images/atras.png" alt="volver" />
@@ -53,7 +53,7 @@ export const PetDetails = () => {
               </div>
             </div>
             <div id="ficha-caracter">
-              <div className="ficha-uno">
+              <div className="ficha">
                 <div className="title-ficha">
                   <h2>CARACTERÍSTICAS</h2>
                 </div>
@@ -76,7 +76,7 @@ export const PetDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="ficha-dos">
+              <div className="ficha">
                 <div className="title-ficha">
                   <h2>SALUD</h2>
                 </div>
@@ -95,7 +95,7 @@ export const PetDetails = () => {
                   </tr>
                 </table>
               </div>
-              <div className="ficha-tres">
+              <div className="ficha">
                 <div className="title-ficha">
                   <h2>HISTORIA</h2>
                 </div>

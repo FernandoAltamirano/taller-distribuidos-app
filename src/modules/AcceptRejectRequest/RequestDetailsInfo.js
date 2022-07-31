@@ -3,11 +3,11 @@ import { Button, Divider, Grid } from "@mui/material";
 export const RequestDetailsInfo = ({ data, handleExecuteAction, loading }) => {
   return (
     <div
-      className="layout-page modal-container"
+      className="layout-page modal-container request-details-info-modal"
       style={{ width: "40%", background: "white" }}
     >
-      <h1>Datos de usuario</h1>
-      <Grid container spacing={2} style={{ padding: "20px 0", width: "100%" }}>
+      <h2>Datos de usuario</h2>
+      <Grid container spacing={2} className="grid-container-request-details">
         <Grid item xs={6}>
           <p>
             <strong> Nombres:</strong> {data.user.firstname}
@@ -40,8 +40,8 @@ export const RequestDetailsInfo = ({ data, handleExecuteAction, loading }) => {
         </Grid>
       </Grid>
       <Divider />
-      <h1>Datos de solicitud</h1>
-      <Grid container spacing={2} style={{ padding: "0", width: "100%" }}>
+      <h2>Datos de solicitud</h2>
+      <Grid container spacing={2} className="grid-container-request-details">
         <Grid item xs={6}>
           <p>
             <strong>ID:</strong> {data.id}

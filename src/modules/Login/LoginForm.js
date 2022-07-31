@@ -36,6 +36,7 @@ export const LoginForm = ({
           name="password"
           label="Contraseña"
           variant="outlined"
+          type="password"
           onChange={handleChangeLoginData}
           autoComplete="new-password"
         />

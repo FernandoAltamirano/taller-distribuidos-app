@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { Menu } from "..";
+import { Menu, Logo } from "..";
 import "../../pages/Landing/styles.css";
 function Layout({ children }) {
   const location = useLocation();
@@ -12,14 +12,9 @@ function Layout({ children }) {
         <div>
           <div className="heade">
             <div className="title">
-              <h2>
-                <Link to="/"> TITULO</Link>
-              </h2>
+              <Logo />
             </div>
             <div className="enlaces">
-              <div className="galeri">
-                <Link to="/">Inicio</Link>
-              </div>
               <div className="galeri">
                 <Link to="/galeria">Galeria</Link>
               </div>
@@ -54,7 +49,7 @@ function Layout({ children }) {
 
       <footer id="contacto">
         <div>
-          <h2>SÍGUENOS EN NUESTRAS REDES SOCIALES</h2>
+          <h2>Síguenos en nuestras redes sociales</h2>
         </div>
         <div className="footer-enlaces">
           <a href="">

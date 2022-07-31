@@ -75,6 +75,9 @@ export const RegisterPet = () => {
     if (isEmpty(petData.description)) {
       errors.description = true;
     }
+    if (isEmpty(petData.history)) {
+      errors.history = true;
+    }
     setErrors(errors);
     return errors;
   };
@@ -196,6 +199,13 @@ export const RegisterPet = () => {
           value={petData.description}
           name="description"
           label="Descripción"
+          onChange={handleSetPetData}
+        />
+        <TextField
+          error={errors.history}
+          value={petData.history}
+          name="history"
+          label="Historia"
           onChange={handleSetPetData}
         />
         <input type="file" name="" id="" onChange={handleChargePreviewImage} />

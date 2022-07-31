@@ -7,3 +7,4 @@ export { TableComponent as Table } from "./Table";
 export { Loader } from "./Loader/Loader";
 export { ModalComponent as Modal } from "./Modal";
 export { Sidebar } from "./Sidebar/Sidebar";
+export { Logo } from "./Logo";
