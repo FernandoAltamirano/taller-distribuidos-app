@@ -4,6 +4,8 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { deleteUser } from "../redux/actions";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 export const MenuComponent = () => {
   const state = useSelector((state) => state.User);
   const navigate = useNavigate();
@@ -35,10 +37,12 @@ export const MenuComponent = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        {state?.user?.firstname
-          ? `${state.user.firstname} ${state.user.lastname}`
-          : state?.user?.email}{" "}
-        <KeyboardArrowDownIcon />
+        {state?.user?.img ? (
+          <img src={state.user.img} alt="" />
+        ) : (
+          <AccountCircleIcon width={30} />
+        )}
+        {/* <KeyboardArrowDownIcon /> */}
       </Button>
       <Menu
         id="basic-menu"

@@ -5,6 +5,7 @@
   --white-color: #fff;
   --blue-color: rgb(65, 87, 255);
   --red-color: rgb(255, 85, 38);
+  --transparent:transparent;
 }
 *{
   margin: 0;
