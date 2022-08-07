@@ -27,6 +27,7 @@ export class UserController {
     id,
     dispatch,
     data: userData,
+    setLoading,
   }) => {
     try {
       const response = await fetch(`${BASE_URL}/user/institution/${id}`, {
@@ -51,7 +52,13 @@ export class UserController {
       setLoading(false);
     }
   };
-  static updateUserData = async ({ setUser, id, dispatch, data: userData }) => {
+  static updateUserData = async ({
+    setUser,
+    id,
+    dispatch,
+    data: userData,
+    setLoading,
+  }) => {
     try {
       const response = await fetch(`${BASE_URL}/user/${id}`, {
         method: "PUT",
