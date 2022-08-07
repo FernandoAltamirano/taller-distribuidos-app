@@ -65,6 +65,7 @@ button:disabled{
   margin: 0 auto;
   padding: 1em 2em 2em 2em;
   border-radius: 3rem;
+  overflow: auto!important;
 }
 
 
