@@ -49,8 +49,12 @@ export const MenuComponent = () => {
           <img
             src={state.user.img}
             alt=''
-            width={40}
-            style={{ borderRadius: "100%" }}
+            style={{
+              borderRadius: "100%",
+              width: "40px",
+              height: "40px",
+              objectFit: "cover",
+            }}
           />
         ) : (
           <AccountCircleIcon width={30} />
