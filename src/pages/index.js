@@ -10,3 +10,4 @@ export { Login } from "./Auth/Login";
 export { Landing } from "./Landing/Landing";
 export { PetDetails } from "./Landing/PetDetails";
 export { Galery } from "./Landing/Galery";
+export { UserDetails } from "./Landing/UserDetails";

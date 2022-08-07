@@ -8,11 +8,11 @@ export const DrawerComponent = ({ isOpen, toggleModal }) => {
       anchor={"left"}
       open={isOpen}
       onClose={toggleModal}
-      className="drawer-component"
+      className='drawer-component'
     >
       <div>
-        <div className="flex drawer-header-component">
-          <img src="/logo.png" alt="" width="50px" />
+        <div className='flex drawer-header-component'>
+          <img src='/logo.png' alt='' width='50px' />
           <h3 style={{ color: "var(--white-color)", marginLeft: "10px" }}>
             Adopción
             <br /> de mascotas
@@ -21,11 +21,11 @@ export const DrawerComponent = ({ isOpen, toggleModal }) => {
             <MenuIcon style={{ color: "var(--white-color)" }} />
           </Button>
         </div>
-        <div className="flex-column drawer-list">
-          <Link to="/" onClick={toggleModal}>
+        <div className='flex-column drawer-list'>
+          <Link to='/' onClick={toggleModal}>
             Inicio
           </Link>
-          <Link to="/mascotas" onClick={toggleModal}>
+          <Link to='/dashboard/mascotas' onClick={toggleModal}>
             Mascotas
           </Link>
         </div>

@@ -40,14 +40,14 @@ export const RegisterPet = () => {
       setLoading,
     });
     if (response) {
-      navigate("/mascotas");
+      navigate("/dashboard/mascotas");
     }
   };
   const handleRegisterPet = async () => {
     const errors = customValidations();
     if (!isEmpty(errors)) return;
     setLoading(true);
-    await uploadImage({ file, setPetData, petData, executeSendData });
+    await uploadImage({ file, executeSendData, directory: "pets" });
   };
   const customValidations = () => {
     let errors = {};
@@ -124,31 +124,31 @@ export const RegisterPet = () => {
     setPreviewImage(null);
   };
   return (
-    <div className="layout-page register-pet-page">
+    <div className='layout-page register-pet-page'>
       <h1>Mascotas</h1>
       <span>Agrege la información de una nueva mascota </span>
       <h2>Registro</h2>
-      <div className="grid">
+      <div className='grid'>
         <TextField
           error={errors.code}
           value={petData.code}
-          name="code"
+          name='code'
           onChange={handleSetPetData}
-          label="Código"
+          label='Código'
         />
         <TextField
           error={errors.name}
           value={petData.name}
-          name="name"
+          name='name'
           onChange={handleSetPetData}
-          label="Nombre"
+          label='Nombre'
         />
         <TextField
           error={errors.size}
           value={petData.size}
           select
-          name="size"
-          label="Tamaño"
+          name='size'
+          label='Tamaño'
           onChange={handleSetPetData}
         >
           {sizeOptions.map((option) => (
@@ -161,17 +161,17 @@ export const RegisterPet = () => {
           InputLabelProps={{ shrink: true }}
           error={errors.date}
           value={petData.date}
-          label="Fecha de nacimiento"
-          name="date"
-          type="date"
+          label='Fecha de nacimiento'
+          name='date'
+          type='date'
           onChange={handleSetPetData}
         />
         <TextField
           error={errors.activity}
           value={petData.activity}
           select
-          name="activity"
-          label="Nivel de actividad"
+          name='activity'
+          label='Nivel de actividad'
           onChange={handleSetPetData}
         >
           {activityOptions.map((option) => (
@@ -183,9 +183,9 @@ export const RegisterPet = () => {
         <TextField
           error={errors.gender}
           value={petData.gender}
-          name="gender"
+          name='gender'
           select
-          label="Género"
+          label='Género'
           onChange={handleSetPetData}
         >
           {genderOptions.map((option) => (
@@ -197,22 +197,22 @@ export const RegisterPet = () => {
         <TextField
           error={errors.description}
           value={petData.description}
-          name="description"
-          label="Descripción"
+          name='description'
+          label='Descripción'
           onChange={handleSetPetData}
         />
         <TextField
           error={errors.history}
           value={petData.history}
-          name="history"
-          label="Historia"
+          name='history'
+          label='Historia'
           onChange={handleSetPetData}
         />
-        <input type="file" name="" id="" onChange={handleChargePreviewImage} />
+        <input type='file' name='' id='' onChange={handleChargePreviewImage} />
         {previewImage && (
           <div>
             <img
-              width="150px"
+              width='150px'
               src={previewImage.data}
               alt={previewImage.name}
             />
@@ -220,11 +220,11 @@ export const RegisterPet = () => {
           </div>
         )}
       </div>
-      <div className="btn-container-pets-page">
+      <div className='btn-container-pets-page'>
         <Button
           onClick={handleRegisterPet}
-          className="btn-base"
-          variant="contained"
+          className='btn-base'
+          variant='contained'
           disabled={loading}
         >
           Registrar

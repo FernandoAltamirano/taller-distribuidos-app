@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Navigate } from "react-router-dom";
+import { Button, MenuItem, TextField } from "@mui/material";
 import isEmpty from "is-empty";
 import { chargePreviewImage, uploadImage } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { UserController } from "../../controllers/User.controller";
 import { setUser } from "../../redux/actions";
-export const Settings = () => {
+
+export const UserDetails = () => {
+  const state = useSelector((state) => state.User);
+
   const [userData, setUserData] = useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     address: "",
+    sex: "",
     phone: "",
     createdAt: "",
     updatedAt: "",
@@ -67,7 +73,7 @@ export const Settings = () => {
     if (!urlImage) {
       urlImage = userData.img;
     }
-    await UserController.updateInstitutionData({
+    await UserController.updateUserData({
       data: { ...userData, img: urlImage },
       id: userData.id,
       setLoading,
@@ -81,25 +87,31 @@ export const Settings = () => {
     setLoading(true);
     if (isEmpty(previewImage.name)) {
       await executeSendData();
+      setLoading(false);
     } else {
       await uploadImage({ file, executeSendData, directory: "users" });
     }
   };
   const customValidations = () => {
     let errors = {};
-    if (isEmpty(userData.name)) {
-      errors.name = true;
+    if (isEmpty(userData.firstname)) {
+      errors.firstname = true;
     }
-    if (isEmpty(userData.email)) {
-      errors.email = true;
-    }
-    if (isEmpty(userData.address)) {
-      errors.address = true;
-    }
-
     setErrors(errors);
     return errors;
   };
+  const sexOptions = [
+    {
+      value: true,
+      label: "Masculino",
+    },
+    {
+      value: false,
+      label: "Femenino",
+    },
+  ];
+
+  if (state?.user?.name) return <Navigate to='/' replace />;
 
   return (
     <div className='layout-page update-user-page'>
@@ -115,25 +127,25 @@ export const Settings = () => {
         </div>
         <div className='form-container grid'>
           <TextField
-            error={errors.name}
-            value={userData?.name}
-            name='name'
+            error={errors.firstname}
+            value={userData?.firstname}
+            name='firstname'
             onChange={handleUserData}
-            label='Nombre'
+            label='Primer nombre'
+          />
+          <TextField
+            error={errors.lastname}
+            value={userData?.lastname}
+            name='lastname'
+            onChange={handleUserData}
+            label='Primer apellido'
           />
           <TextField
             error={errors.email}
             value={userData?.email}
             name='email'
-            onChange={handleUserData}
+            disabled
             label='Correo electrónico'
-          />
-          <TextField
-            error={errors.address}
-            value={userData?.address}
-            name='address'
-            onChange={handleUserData}
-            label='Dirección'
           />
           <TextField
             error={errors.phone}
@@ -142,6 +154,20 @@ export const Settings = () => {
             onChange={handleUserData}
             label='Teléfono'
           />
+          <TextField
+            error={errors.sex}
+            value={userData?.sex}
+            name='sex'
+            onChange={handleUserData}
+            select
+            label='Sexo'
+          >
+            {sexOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <TextField
             value={userData?.createdAt}
             label='Fecha de creación'

@@ -11,10 +11,15 @@ export default class RequestsController {
   }) => {
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/request`);
+      const response = await fetch(`${BASE_URL}/request`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       const requests = await response.json();
-      setRequests(requests.reverse());
-      setFilteredRequests(requests);
+      const reversedRequests = requests.request.reverse();
+      setRequests(reversedRequests);
+      setFilteredRequests(reversedRequests);
     } catch (err) {
       toast("warn", "No se pudo cargar las solicitudes");
     } finally {

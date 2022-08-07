@@ -5,7 +5,7 @@ import isEmpty from "is-empty";
 import { ToastContainer } from "react-toastify";
 
 import { ProtectedRoute, PublicRoute } from "./routes";
-import { LayoutDashboard, LayoutAuth } from "./components";
+import { LayoutDashboard, LayoutAuth, LandingLayout } from "./components";
 import {
   Home,
   Landing,
@@ -17,6 +17,7 @@ import {
   PetDetails,
   Galery,
   Settings,
+  UserDetails,
 } from "./pages";
 import { UserController } from "./controllers/User.controller";
 import { setUser } from "./redux/actions";
@@ -42,28 +43,41 @@ export default function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route path="/" element={<Landing />} />
-            <Route path="/galeria" element={<Galery />} />
-            <Route path="/galeria/detalles/:id" element={<PetDetails />} />
+          <Route element={<LandingLayout />}>
+            <Route path='/' element={<Landing />} />
+            <Route path='/galeria' element={<Galery />} />
+            <Route path='/galeria/detalles/:id' element={<PetDetails />} />
+            <Route path='/usuario-detalles' element={<UserDetails />} />
+          </Route>
+          <Route
+            path='/dashboard'
+            element={<ProtectedRoute children={<LayoutDashboard />} />}
+          >
+            <Route path='/dashboard/mascotas' element={<Pets />} />
             <Route
-              path="/"
-              element={<ProtectedRoute children={<LayoutDashboard />} />}
-            >
-              <Route path="/mascotas" element={<Pets />} />
-              <Route path="/mascotas/registrar" element={<RegisterPet />} />
-              <Route path="/solicitudes" element={<Requests />} />
-              <Route path="/configuraciones" element={<Settings />} />
-            </Route>
-            <Route path="/" element={<PublicRoute children={<LayoutAuth />} />}>
-              <Route path="/registrate" element={<Register />} />
-              <Route path="/inicia-sesion" element={<Login />} />
-            </Route>
+              path='/dashboard/mascotas/registrar'
+              element={<RegisterPet />}
+            />
+            <Route path='/dashboard/solicitudes' element={<Requests />} />
+            <Route path='/dashboard/configuraciones' element={<Settings />} />
+          </Route>
+          <Route
+            path='/'
+            element={
+              <ProtectedRoute
+                children={<LayoutDashboard />}
+                validation={state?.user?.firstname}
+              />
+            }
+          ></Route>
+          <Route path='/' element={<PublicRoute children={<LayoutAuth />} />}>
+            <Route path='/registrate' element={<Register />} />
+            <Route path='/inicia-sesion' element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer
-        position="top-center"
+        position='top-center'
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -71,7 +85,7 @@ export default function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme='colored'
       />
     </>
   );

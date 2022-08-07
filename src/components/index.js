@@ -1,5 +1,6 @@
 export { LayoutDashboard } from "./Layouts/Dashboard";
 export { LayoutAuth } from "./Layouts/Auth";
+export { LandingLayout } from "./Layouts/Landing";
 export { Header } from "./Header";
 export { MenuComponent as Menu } from "./Menu";
 export { DrawerComponent as Drawer } from "./Drawer";

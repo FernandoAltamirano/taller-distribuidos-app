@@ -25,6 +25,14 @@ export const MenuComponent = () => {
     dp(deleteUser());
   };
 
+  const handleAccountRedirect = () => {
+    if (state?.user?.name) {
+      navigate("/dashboard/configuraciones");
+      return;
+    }
+    navigate("/usuario-detalles");
+  };
+
   return (
     <div
       className={`menu-component ${
@@ -33,19 +41,24 @@ export const MenuComponent = () => {
     >
       <Button
         aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
         {state?.user?.img ? (
-          <img src={state.user.img} alt="" />
+          <img
+            src={state.user.img}
+            alt=''
+            width={40}
+            style={{ borderRadius: "100%" }}
+          />
         ) : (
           <AccountCircleIcon width={30} />
         )}
         {/* <KeyboardArrowDownIcon /> */}
       </Button>
       <Menu
-        id="basic-menu"
+        id='basic-menu'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -53,9 +66,7 @@ export const MenuComponent = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => navigate("/configuraciones")}>
-          Mi cuenta
-        </MenuItem>
+        <MenuItem onClick={handleAccountRedirect}>Mi cuenta</MenuItem>
         <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
       </Menu>
     </div>
