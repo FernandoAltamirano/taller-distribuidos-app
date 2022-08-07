@@ -47,6 +47,8 @@ export class UserController {
       }
     } catch (error) {
       return false;
+    } finally {
+      setLoading(false);
     }
   };
   static updateUserData = async ({ setUser, id, dispatch, data: userData }) => {
@@ -69,6 +71,8 @@ export class UserController {
       }
     } catch (error) {
       return false;
+    } finally {
+      setLoading(false);
     }
   };
 }
