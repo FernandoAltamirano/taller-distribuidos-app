@@ -1,13 +1,12 @@
 import React from "react";
-import Layout from "../../components/Layouts/Landing";
 import { Carousel } from "react-responsive-carousel";
 import "./styles.css";
 import ReturnUp from "../../components/ReturnUp";
 export const Landing = () => {
   return (
-    <Layout>
+    <>
       <main>
-        <div id="portada">
+        <div id='portada'>
           <Carousel
             autoPlay
             infiniteLoop
@@ -16,24 +15,24 @@ export const Landing = () => {
             showThumbs={false}
           >
             <div>
-              <img src="/images/banner1.png" />
+              <img src='/images/banner1.png' />
             </div>
             <div>
-              <img src="/images/banner5.png" />
+              <img src='/images/banner5.png' />
             </div>
             <div>
-              <img src="/images/banner4.png" />
+              <img src='/images/banner4.png' />
             </div>
           </Carousel>
         </div>
-        <div id="acercade">
-          <div className="tresperritos">
+        <div id='acercade'>
+          <div className='tresperritos'>
             <img
-              src="/images/tresperritos.jpg"
-              alt="adopta, salvalos y dales amor"
+              src='/images/tresperritos.jpg'
+              alt='adopta, salvalos y dales amor'
             />
           </div>
-          <div className="quienSon" id="quienes-somos">
+          <div className='quienSon' id='quienes-somos'>
             <div>
               <h1>¿Quiénes Somos?</h1>
               <br />{" "}
@@ -46,24 +45,24 @@ export const Landing = () => {
                 proyecto
               </p>
             </div>
-            <div className="quienSon-imagen">
+            <div className='quienSon-imagen'>
               <figure>
-                <img src="/images/adoptar1.png" alt="" />
+                <img src='/images/adoptar1.png' alt='' />
               </figure>
               <figure>
-                <img src="/images/adoptar2.png" alt="" />
+                <img src='/images/adoptar2.png' alt='' />
               </figure>
               <figure>
-                <img src="/images/adoptar3.png" alt="" />
+                <img src='/images/adoptar3.png' alt='' />
               </figure>
             </div>
           </div>
         </div>
-        <div id="ofrecemos">
+        <div id='ofrecemos'>
           <h2>¿Qué ofrecemos?</h2>
-          <div className="ofrecemos-casillas">
+          <div className='ofrecemos-casillas'>
             <div>
-              <img src="/images/ofrece1.png" alt="" />
+              <img src='/images/ofrece1.png' alt='' />
               <h3>RESPETO CON LOS ANIMALES</h3>
               <br />
               <p>
@@ -74,7 +73,7 @@ export const Landing = () => {
               </p>
             </div>
             <div>
-              <img src="/images/ofrece2.png" alt="" />
+              <img src='/images/ofrece2.png' alt='' />
               <h3>AMOR CON LOS ANIMALES</h3>
               <br />
               <p>
@@ -84,7 +83,7 @@ export const Landing = () => {
               </p>
             </div>
             <div>
-              <img src="/images/ofrece3.png" alt="" />
+              <img src='/images/ofrece3.png' alt='' />
               <h3>SOLIDARIDAD CON LOS ANIMALES</h3>
               <br />
               <p>
@@ -97,6 +96,6 @@ export const Landing = () => {
         </div>
       </main>
       <ReturnUp />
-    </Layout>
+    </>
   );
 };

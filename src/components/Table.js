@@ -45,7 +45,7 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page"
+        aria-label='first page'
       >
         {theme.direction === "rtl" ? (
           <LastPageOutlined />
@@ -56,7 +56,7 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page"
+        aria-label='previous page'
       >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
@@ -67,7 +67,7 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
+        aria-label='next page'
       >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
@@ -78,7 +78,7 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
+        aria-label='last page'
       >
         {theme.direction === "rtl" ? (
           <FirstPageOutlined />
@@ -91,7 +91,7 @@ function TablePaginationActions(props) {
 }
 
 export const TableComponent = (props) => {
-  const { data, slots,actionRow } = props;
+  const { data, slots, actionRow } = props;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -106,32 +106,36 @@ export const TableComponent = (props) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <Table sx={{ minWidth: 500 }} aria-label='custom pagination table'>
         <TableBody>
-          <TableRow className="table-headers">
+          <TableRow className='table-headers'>
             {slots?.map((item) => {
               return (
-                <TableCell key={item.title} style={{ width: 160 }} align="left">
+                <TableCell key={item.title} style={{ width: 160 }} align='left'>
                   {item.title}
                 </TableCell>
               );
             })}
           </TableRow>
           {data?.length < 1 ? (
-            <p style={{ marginLeft: "10px" }}>No se encontraron registro :(</p>
+            <></>
           ) : (
-            (rowsPerPage > 0
+            (rowsPerPage > 0 && !isEmpty(data)
               ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : data
             ).map((row) => {
               return (
-                <TableRow key={row.id} className={!isEmpty(actionRow) ? "table-row" : ""} onClick={() => actionRow(row)}>
+                <TableRow
+                  key={row.id}
+                  className={!isEmpty(actionRow) ? "table-row" : ""}
+                  onClick={() => actionRow(row)}
+                >
                   {slots.map((slot) => {
                     return (
                       <TableCell
                         key={Math.random()}
                         style={{ width: 160 }}
-                        align="left"
+                        align='left'
                       >
                         {!isEmpty(slot.cell) ? slot.cell(row) : row[slot.tag]}
                       </TableCell>

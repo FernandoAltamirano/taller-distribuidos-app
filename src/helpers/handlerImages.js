@@ -15,13 +15,13 @@ export const chargePreviewImage = (e, setPreviewImage) => {
   }
 };
 
-export const uploadImage = ({ file, setPetData, petData, executeSendData }) => {
-  const stg = storage.ref("/pets" + file.name);
+export const uploadImage = ({ file, executeSendData, directory }) => {
+  const stg = storage.ref(`/${directory}` + file.name);
   const task = stg.put(file);
   return task.on(
     "state_changed",
-    function (snapshot) {},
-    function (err) {},
+    function () {},
+    function () {},
     function () {
       task.snapshot.ref.getDownloadURL().then((url) => {
         executeSendData(url);

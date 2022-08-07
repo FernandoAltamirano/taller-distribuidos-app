@@ -7,7 +7,23 @@ export class PetsController {
     try {
       const response = await fetch(`${BASE_URL}/pets`);
       const pets = await response.json();
-      setPets(pets.reverse());
+      setPets(pets);
+    } catch (err) {
+      toast("warn", "No se pudo cargar las mascotas");
+    } finally {
+      setLoading(false);
+    }
+  };
+  static getPetsByInstitutionId = async ({ setLoading, setPets }) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${BASE_URL}/pets/institution`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const pets = await response.json();
+      setPets(pets.pet.reverse());
     } catch (err) {
       toast("warn", "No se pudo cargar las mascotas");
     } finally {

@@ -16,67 +16,83 @@ export const Sidebar = ({ signOut }) => {
   const [toggleShow, setToggleShow] = useState(false);
 
   const handleItemActive = (item) =>
-    location.pathname.slice(1) === item ? "element-active" : "";
+    location.pathname.includes(item) ? "element-active" : "";
+
   return (
     <div className={toggleShow ? "sidebar open" : "sidebar"}>
-      <div className="logo-details">
+      <div className='logo-details'>
         <Logo className={toggleShow ? "logo" : "logo hidden"} titleHidden />
         <i
-          className="bx bx-menu"
-          id="btn"
+          className='bx bx-menu'
+          id='btn'
           onClick={() => setToggleShow(!toggleShow)}
         >
           <MenuIcon style={{ fontSize: "30px" }} />
         </i>
       </div>
-      <ul className="nav-list">
+      <ul className='nav-list'>
         <li>
-          <Link to="/solicitudes" className={handleItemActive("solicitudes")}>
+          <Link
+            to='/dashboard/solicitudes'
+            className={handleItemActive("solicitudes")}
+          >
             <i>
               <ArticleIcon />
             </i>
-            <span className="links_name">Solicitudes</span>
+            <span className='links_name'>Solicitudes</span>
           </Link>
-          <span className="tooltip">Solicitudes</span>
-        </li>
-        <li>
-          <Link to="/mascotas" className={handleItemActive("mascotas")}>
-            <i>
-              <PetsIcon />
-            </i>
-            <span className="links_name">Mascotas</span>
-          </Link>
-          <span className="tooltip">Mascotas</span>
+          <span className='tooltip'>Solicitudes</span>
         </li>
         <li>
           <Link
-            to="/configuraciones"
+            to='/dashboard/mascotas'
+            className={handleItemActive("mascotas")}
+          >
+            <i>
+              <PetsIcon />
+            </i>
+            <span className='links_name'>Mascotas</span>
+          </Link>
+          <span className='tooltip'>Mascotas</span>
+        </li>
+        <li>
+          <Link
+            to='/dashboard/configuraciones'
             className={handleItemActive("configuraciones")}
           >
             <i>
               <SettingsIcon />
             </i>
-            <span className="links_name">Configuraciones</span>
+            <span className='links_name'>Configuraciones</span>
           </Link>
-          <span className="tooltip">Configuraciones</span>
+          <span className='tooltip'>Configuraciones</span>
         </li>
 
-        <li className="profile">
-          <div className="profile-details">
+        <li className='profile'>
+          <div className='profile-details'>
             <i>
-              <AccountCircleIcon width="30" color="var(--primary-color)" />
+              {state?.user.img ? (
+                <img
+                  src={state.user.img}
+                  alt=''
+                  width={40}
+                  style={{ borderRadius: "100%" }}
+                />
+              ) : (
+                <AccountCircleIcon width='30' color='var(--primary-color)' />
+              )}
             </i>
-            <p className="name" title={state.user.name}>
+            <p className='name' title={state.user.name}>
               {state.user.name}
             </p>
           </div>
           <ExitToAppIcon
             onClick={signOut}
-            width="30"
-            color="var(--primary-color)"
-            cursor="pointer"
-            className="signout-icon"
-            titleAccess="Cerrar sesión"
+            width='30'
+            color='var(--primary-color)'
+            cursor='pointer'
+            className='signout-icon'
+            titleAccess='Cerrar sesión'
           />
         </li>
       </ul>

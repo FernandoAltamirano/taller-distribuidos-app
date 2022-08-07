@@ -2,6 +2,7 @@ import { Button, MenuItem, TextField } from "@mui/material";
 import isEmpty from "is-empty";
 import { useEffect, useState } from "react";
 import { PetsController } from "../../controllers/Pets.controller";
+import { chargePreviewImage, uploadImage } from "../../helpers";
 
 export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
   const [petData, setPetData] = useState({
@@ -16,7 +17,11 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const [file, setFile] = useState(null);
+  const [previewImage, setPreviewImage] = useState({
+    name: "",
+    data: data.img,
+  });
   const handleChangePetData = (ev) => {
     setPetData({
       ...petData,
@@ -34,16 +39,40 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
     setPetData(data);
   }, []);
 
-  const handleUpdatePet = async () => {
-    const errors = customValidations();
-    if (!isEmpty(errors)) return;
+  const handleUpdateImage = (ev) => {
+    if (!isEmpty(ev.target.files)) {
+      setFile(ev.target.files[0]);
+      chargePreviewImage(ev, setPreviewImage);
+    }
+  };
+  const handleDeletePreviewImage = () => {
+    setPreviewImage({
+      name: "",
+      data: data.img,
+    });
+  };
+
+  const executeSendData = async (urlImage) => {
+    if (!urlImage) {
+      urlImage = petData.img;
+    }
     await PetsController.updatePet({
-      data: petData,
+      data: { ...petData, img: urlImage },
       setLoading,
       id,
     });
     deleteData();
     getAllPets();
+  };
+  const handleUpdatePet = async () => {
+    const errors = customValidations();
+    if (!isEmpty(errors)) return;
+    if (!isEmpty(previewImage.name)) {
+      setLoading(true);
+      await uploadImage({ file, executeSendData, directory: "pets" });
+      return;
+    }
+    executeSendData();
   };
   const customValidations = () => {
     let errors = {};
@@ -105,30 +134,38 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
     },
   ];
   return (
-    <div className="layout-page modal-container update-pet-modal">
+    <div className='layout-page modal-container update-pet-modal'>
       <div>
         <h1>Editar información</h1>
-        <div className="form-container grid">
+        <div className='container-change-image-update-modal'>
+          <img src={previewImage.data} alt='profile pet' />
+          <label className='change-image-update-modal'>
+            Cambiar imagen{" "}
+            <input type='file' hidden onChange={handleUpdateImage} />
+          </label>
+          <button onClick={handleDeletePreviewImage}>Borrar imagen</button>
+        </div>
+        <div className='form-container grid'>
           <TextField
             error={errors.code}
             value={petData?.code}
-            name="code"
+            name='code'
             onChange={handleChangePetData}
-            label="Código"
+            label='Código'
           />
           <TextField
             error={errors.name}
             value={petData?.name}
-            name="name"
+            name='name'
             onChange={handleChangePetData}
-            label="Nombre"
+            label='Nombre'
           />
           <TextField
             error={errors.size}
             value={petData?.size}
             select
-            name="size"
-            label="Tamaño"
+            name='size'
+            label='Tamaño'
             onChange={handleChangePetData}
           >
             {sizeOptions.map((option) => (
@@ -141,17 +178,17 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
             InputLabelProps={{ shrink: true }}
             error={errors.date}
             value={petData?.date}
-            label="Fecha de nacimiento"
-            name="date"
-            type="date"
+            label='Fecha de nacimiento'
+            name='date'
+            type='date'
             onChange={handleChangePetData}
           />
           <TextField
             error={errors.activity}
             value={petData?.activity}
             select
-            name="activity"
-            label="Nivel de actividad"
+            name='activity'
+            label='Nivel de actividad'
             onChange={handleChangePetData}
           >
             {activityOptions.map((option) => (
@@ -163,9 +200,9 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
           <TextField
             error={errors.gender}
             value={petData?.gender}
-            name="gender"
+            name='gender'
             select
-            label="Género"
+            label='Género'
             onChange={handleChangePetData}
           >
             {genderOptions.map((option) => (
@@ -177,23 +214,37 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
           <TextField
             error={errors.description}
             value={petData?.description}
-            name="description"
-            label="Descripción"
+            name='description'
+            label='Descripción'
+            onChange={handleChangePetData}
+          />
+          <TextField
+            error={errors.history}
+            value={petData?.history}
+            name='history'
+            label='Historia'
+            onChange={handleChangePetData}
+          />
+          <TextField
+            error={errors.otherDetails}
+            value={petData?.otherDetails}
+            name='otherDetails'
+            label='Otros detalles'
             onChange={handleChangePetData}
           />
         </div>
-        <div className="btn-container-pets-page">
+        <div className='btn-container-pets-page'>
           <Button
             onClick={handleUpdatePet}
-            className="btn-base"
-            variant="contained"
+            className='btn-base'
+            variant='contained'
             disabled={loading}
           >
             Actualizar
           </Button>
           <Button
             onClick={() => deleteData()}
-            className="btn-base-outlined"
+            className='btn-base-outlined'
             disabled={loading}
           >
             Cancelar

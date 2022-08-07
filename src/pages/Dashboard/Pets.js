@@ -14,7 +14,8 @@ export const Pets = () => {
   const [selectedPetData, setSelectedPetData] = useState(null);
   const filterRef = useRef("");
 
-  const getAllPets = () => PetsController.getAllPets({ setLoading, setPets });
+  const getAllPets = () =>
+    PetsController.getPetsByInstitutionId({ setLoading, setPets });
 
   const handleModalToUpdate = (id) => {
     selectPet(id);
@@ -79,7 +80,7 @@ export const Pets = () => {
       tag: "",
       title: "Opciones",
       cell: (data) => (
-        <div className="actions-container">
+        <div className='actions-container'>
           <span onClick={() => handleModalToUpdate(data.id)}>Editar</span>
           <span onClick={() => handleModalToDelete(data.id)}>Eliminar</span>
           <span></span>
@@ -94,45 +95,45 @@ export const Pets = () => {
 
   return (
     <>
-      <div className="layout-page">
+      <div className='layout-page'>
         <h1>Mascotas</h1>
         <div>
-          <Link className="add-pet-button" to="/mascotas/registrar">
+          <Link className='add-pet-button' to='/dashboard/mascotas/registrar'>
             <AddIcon />
             <span>Añadir nueva mascota</span>
           </Link>
 
-          <div className="pets-table-container">
-            <div className="flex reset-button-container">
+          <div className='pets-table-container'>
+            <div className='flex reset-button-container'>
               <ReplayIcon onClick={handleReloadData} />
             </div>
-            <div className="flex filters-container">
-              <div className="filters-container-input">
+            <div className='flex filters-container'>
+              <div className='filters-container-input'>
                 <TextField
                   inputRef={filterRef}
-                  label="Buscar por código de mascota"
-                  variant="outlined"
-                  type="search"
+                  label='Buscar por código de mascota'
+                  variant='outlined'
+                  type='search'
                 />
               </div>
-              <div className="flex" style={{ columnGap: "10px" }}>
+              <div className='flex' style={{ columnGap: "10px" }}>
                 <Button
                   onClick={handleSearchByFilter}
-                  className="btn-base"
-                  variant="contained"
+                  className='btn-base'
+                  variant='contained'
                 >
                   Filtrar
                 </Button>
                 <Button
                   onClick={handleResetFilter}
-                  className="btn-base-outlined"
-                  variant="outlined"
+                  className='btn-base-outlined'
+                  variant='outlined'
                 >
                   Resetear
                 </Button>
               </div>
             </div>
-            <div className="table-container-scroll">
+            <div className='table-container-scroll'>
               {!loading ? <Table slots={tableSlots} data={pets} /> : <Loader />}
             </div>
           </div>
