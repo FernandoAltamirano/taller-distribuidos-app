@@ -137,9 +137,9 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
     <div className='layout-page modal-container update-pet-modal'>
       <div>
         <h1>Editar información</h1>
-        <div className='container-change-image-update-modal'>
+        <div className='container-outlined-button'>
           <img src={previewImage.data} alt='profile pet' />
-          <label className='change-image-update-modal'>
+          <label className='outlined-button'>
             Cambiar imagen{" "}
             <input type='file' hidden onChange={handleUpdateImage} />
           </label>

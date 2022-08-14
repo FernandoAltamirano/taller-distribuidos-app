@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { deleteUser } from "../redux/actions";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 

@@ -43,7 +43,7 @@ export const Settings = () => {
     setUserData(data);
     setPreviewImage({
       name: "",
-      data: data.img,
+      data: data?.img,
     });
   };
   useEffect(() => {
@@ -61,6 +61,7 @@ export const Settings = () => {
       name: "",
       data: userData?.img,
     });
+    document.getElementById("input-update-image").value = "";
   };
 
   const executeSendData = async (urlImage) => {
@@ -105,13 +106,29 @@ export const Settings = () => {
     <div className='layout-page update-user-page'>
       <div>
         <h1>Editar información</h1>
-        <div>
-          <img src={previewImage?.data} alt='profile user' width={200} />
-          <label className='change-image-update-modal'>
+        <div className='update-user-page-container'>
+          <img
+            src={previewImage?.data || "/default-profile.png"}
+            alt='profile user'
+            width={200}
+          />
+          <label className='outlined-button'>
             Cambiar imagen{" "}
-            <input type='file' hidden onChange={handleUpdateImage} />
+            <input
+              id='input-update-image'
+              type='file'
+              hidden
+              onChange={handleUpdateImage}
+            />
           </label>
-          <button onClick={handleDeletePreviewImage}>Borrar imagen</button>
+          {userData?.img !== previewImage?.data && (
+            <button
+              className='delete-image-button'
+              onClick={handleDeletePreviewImage}
+            >
+              Borrar imagen
+            </button>
+          )}
         </div>
         <div className='form-container grid'>
           <TextField
@@ -125,7 +142,7 @@ export const Settings = () => {
             error={errors.email}
             value={userData?.email}
             name='email'
-            onChange={handleUserData}
+            disabled
             label='Correo electrónico'
           />
           <TextField

@@ -110,7 +110,7 @@
 }
 
 .galeri a {
-  color: azure;
+  color: var(--black-color);
 }
 .sesion a {
   color: var(--primary-color);
@@ -285,7 +285,11 @@ main {
   width: 200px;
   height: 200px;
   margin-bottom: 10px;
+  border-radius: 100%;
   object-fit: cover;
+  box-shadow: 10px 11px 25px 0px rgba(0,0,0,0.39);
+-webkit-box-shadow: 10px 11px 25px 0px rgba(0,0,0,0.39);
+-moz-box-shadow: 10px 11px 25px 0px rgba(0,0,0,0.39);
 }
 .galery-choose-item {
   padding: 10px;
@@ -464,7 +468,9 @@ main {
   width: 50px;
   height: 50px;
 }
-
+.ficha p{
+  width: 100%;
+}
 /*Para la cuenta de usuario (cuenta)*/
 #cuenta-cabecera {
   display: flex;
@@ -535,7 +541,7 @@ main {
 /*Pie de página*/
 footer {
   width: 100%;
-  background-color: #e6cfe7;
+  background-color: var(--secondary-color);
   text-align: center;
 }
 footer div h2 {
