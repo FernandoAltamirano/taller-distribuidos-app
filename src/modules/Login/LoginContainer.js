@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import isEmpty from "is-empty";
 import { AuthController } from "../../controllers/Auth.controller";
+import { UserController } from "../../controllers/User.controller";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
 import { LoginForm } from "../../modules/Login/LoginForm";
@@ -37,9 +38,12 @@ export const LoginContainer = ({ isModal, handleClose }) => {
       setLoading,
     });
     if (!isEmpty(response?.token)) {
-      const { token, ...restValues } = response;
-      dp(setUser(restValues));
-      localStorage.setItem("token", token);
+      await UserController.getUserDataByToken({
+        token: response.token,
+        setUser,
+        dispatch: dp,
+      });
+      localStorage.setItem("token", response.token);
       navigate("/");
     }
   };

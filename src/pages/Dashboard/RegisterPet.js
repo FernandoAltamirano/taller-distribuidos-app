@@ -86,6 +86,14 @@ export const RegisterPet = () => {
       value: "Alto",
       label: "Alto",
     },
+    {
+      value: "Medio",
+      label: "Medio",
+    },
+    {
+      value: "Bajo",
+      label: "Bajo",
+    },
   ];
   const sizeOptions = [
     {
@@ -128,6 +136,31 @@ export const RegisterPet = () => {
       <h1>Mascotas</h1>
       <span>Agrege la información de una nueva mascota </span>
       <h2>Registro</h2>
+      <div className='update-user-page-container'>
+        {previewImage?.data && (
+          <img src={previewImage?.data} alt={previewImage?.name} />
+        )}
+        <label className='outlined-button' style={{ width: "140px" }}>
+          Añadir fotografía
+          <input
+            hidden
+            type='file'
+            name=''
+            id=''
+            onChange={handleChargePreviewImage}
+          />
+        </label>
+        {previewImage && (
+          <div>
+            <button
+              className='delete-image-button'
+              onClick={handleDeletePreviewImage}
+            >
+              delete image
+            </button>
+          </div>
+        )}
+      </div>
       <div className='grid'>
         <TextField
           error={errors.code}
@@ -208,17 +241,6 @@ export const RegisterPet = () => {
           label='Historia'
           onChange={handleSetPetData}
         />
-        <input type='file' name='' id='' onChange={handleChargePreviewImage} />
-        {previewImage && (
-          <div>
-            <img
-              width='150px'
-              src={previewImage.data}
-              alt={previewImage.name}
-            />
-            <button onClick={handleDeletePreviewImage}>delete image</button>
-          </div>
-        )}
       </div>
       <div className='btn-container-pets-page'>
         <Button

@@ -25,21 +25,21 @@ export const Register = () => {
       isEmpty(registerData.email) ||
       !EMAIL_PATTERN.test(registerData.email)
     ) {
-      errors.email = true;
+      errors.email = "Formato de correo inválido";
     }
     if (
       isEmpty(registerData.password) ||
       registerData.password.length < 8 ||
       registerData.password.length > 20
     ) {
-      errors.password = true;
+      errors.password = "Debe contener entre 8 y 20 caracteres";
     }
     if (
       isEmpty(confirmPasswordRef.current.value) ||
       (!isEmpty(registerData.password) &&
         registerData.password !== confirmPasswordRef.current.value)
     ) {
-      errors.confirmPassword = true;
+      errors.confirmPassword = "Las contraseñas no coinciden";
     }
     setErrors(errors);
     return errors;
@@ -96,76 +96,79 @@ export const Register = () => {
     }
   }, [registerData]);
   return (
-    <div className="auth-form-container">
+    <div className='auth-form-container'>
       <h1>Regístrate</h1>
       <div
-        className="flex"
+        className='flex'
         style={{ justifyContent: "flex-end", gap: "1rem", margin: "1rem 0" }}
       >
         <p>Registrar como institución</p>
-        <input type="checkbox" onChange={handleChangeisInstitution} id="" />
+        <input type='checkbox' onChange={handleChangeisInstitution} id='' />
       </div>
-      <div className="flex-column form-container">
+      <div className='flex-column form-container'>
         <TextField
           error={errors.first}
           value={registerData.first}
           required
-          name="first"
+          name='first'
           label={isInstitution ? "Nombres" : "Primer nombre"}
-          variant="outlined"
+          variant='outlined'
           onChange={handleChangeRegisterData}
         />
         <TextField
           error={errors.second}
           value={registerData.second}
           required
-          name="second"
+          name='second'
           label={isInstitution ? "Dirección" : "Apellidos"}
-          variant="outlined"
+          variant='outlined'
           onChange={handleChangeRegisterData}
         />
         <TextField
-          error={errors.email}
+          error={!!errors.email}
+          helperText={errors.email}
           value={registerData.email}
           required
-          name="email"
-          type="email"
-          label="Correo"
-          variant="outlined"
+          name='email'
+          type='email'
+          label='Correo'
+          variant='outlined'
           onChange={handleChangeRegisterData}
-          autoComplete="off"
+          autoComplete='off'
         />
         <TextField
-          error={errors.password}
+          error={!!errors.password}
+          helperText={errors.password}
           value={registerData.password}
           required
-          name="password"
-          label="Contraseña"
-          type="password"
-          variant="outlined"
+          name='password'
+          label='Contraseña'
+          type='password'
+          variant='outlined'
           onChange={handleChangeRegisterData}
-          autoComplete="new-password"
+          autoComplete='new-password'
         />
         <TextField
-          error={errors.confirmPassword}
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword}
           inputRef={confirmPasswordRef}
           required
-          name="confirmPassword"
-          label="Confirmación de contraseña"
-          variant="outlined"
+          name='confirmPassword'
+          label='Confirmación de contraseña'
+          variant='outlined'
         />
       </div>
       <Button
-        variant="contained"
-        className="btn-base"
+        variant='contained'
+        className='btn-base'
         onClick={handleRegisterData}
         disabled={loading}
       >
         Registrarse
       </Button>
-      <div className="auth-form-container-link">
+      <div className='auth-form-container-link'>
         <span>¿Ya tienes una cuenta? </span>
-        <Link to="/inicia-sesion">Inicia sesión</Link>
+        <Link to='/inicia-sesion'>Inicia sesión</Link>
       </div>
     </div>
   );

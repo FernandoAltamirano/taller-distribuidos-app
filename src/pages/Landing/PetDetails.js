@@ -70,10 +70,6 @@ export const PetDetails = () => {
                   <strong>Sexo: </strong>
                   <span>{pet?.gender}</span>
                 </div>
-                <div>
-                  <strong>Pelaje: </strong>
-                  <span>Corto</span>
-                </div>
               </div>
             </div>
             <div className='ficha'>

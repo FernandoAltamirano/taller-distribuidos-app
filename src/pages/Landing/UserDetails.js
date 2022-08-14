@@ -80,6 +80,7 @@ export const UserDetails = () => {
       dispatch,
       setUser,
     });
+    getUserInfo();
   };
   const handleUpdateUserData = async () => {
     const errors = customValidations();
@@ -117,13 +118,24 @@ export const UserDetails = () => {
     <div className='layout-page update-user-page'>
       <div>
         <h1>Editar información</h1>
-        <div>
-          <img src={previewImage?.data} alt='profile user' width={200} />
-          <label className='change-image-update-modal'>
+        <div className='update-user-page-container'>
+          <img
+            src={previewImage?.data || "/default-profile.png"}
+            alt='profile user'
+            width={200}
+          />
+          <label className='outlined-button'>
             Cambiar imagen{" "}
             <input type='file' hidden onChange={handleUpdateImage} />
           </label>
-          <button onClick={handleDeletePreviewImage}>Borrar imagen</button>
+          {userData?.img !== previewImage?.data && (
+            <button
+              className='delete-image-button'
+              onClick={handleDeletePreviewImage}
+            >
+              Borrar imagen
+            </button>
+          )}
         </div>
         <div className='form-container grid'>
           <TextField
