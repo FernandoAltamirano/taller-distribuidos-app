@@ -73,6 +73,7 @@ export const Register = () => {
     }
     delete data["first"];
     delete data["second"];
+    delete data["confirmPassword"];
     const response = await AuthController.register({
       data,
       setLoading,
@@ -90,11 +91,6 @@ export const Register = () => {
     }
   };
 
-  useEffect(() => {
-    if (!isEmpty(errors)) {
-      customValidations();
-    }
-  }, [registerData]);
   return (
     <div className='auth-form-container'>
       <h1>Regístrate</h1>
@@ -154,7 +150,10 @@ export const Register = () => {
           inputRef={confirmPasswordRef}
           required
           name='confirmPassword'
+          type='password'
           label='Confirmación de contraseña'
+          value={registerData.confirmPassword}
+          onChange={handleChangeRegisterData}
           variant='outlined'
         />
       </div>
