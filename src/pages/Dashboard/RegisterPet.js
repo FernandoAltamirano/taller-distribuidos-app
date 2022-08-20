@@ -156,7 +156,7 @@ export const RegisterPet = () => {
               className='delete-image-button'
               onClick={handleDeletePreviewImage}
             >
-              delete image
+              Borrar
             </button>
           </div>
         )}
