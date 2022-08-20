@@ -89,7 +89,8 @@ button:disabled{
 .layout-component {
   width: 60%;
   margin: 0 auto;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   padding: 20px;
   background-color: var(--white-color);
 }
