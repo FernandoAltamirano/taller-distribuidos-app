@@ -74,15 +74,15 @@ export const PetDetails = () => {
             </div>
             <div className='ficha'>
               <div className='title-ficha'>
-                <h2>SALUD</h2>
+                <h2>HISTORIA</h2>
               </div>
-              <p>{pet?.otherDetails}</p>
+              <p>{pet?.history || "Sin historia"}</p>
             </div>
             <div className='ficha'>
               <div className='title-ficha'>
-                <h2>HISTORIA</h2>
+                <h2>Otros detalles</h2>
               </div>
-              <p>{pet?.history}</p>
+              <p>{pet?.otherDetails || "Sin detalles"}</p>
             </div>
           </div>
         </div>
