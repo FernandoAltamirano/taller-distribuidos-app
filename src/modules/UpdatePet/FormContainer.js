@@ -150,7 +150,7 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
             error={errors.code}
             value={petData?.code}
             name='code'
-            onChange={handleChangePetData}
+            disabled
             label='Código'
           />
           <TextField
@@ -181,7 +181,7 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
             label='Fecha de nacimiento'
             name='date'
             type='date'
-            onChange={handleChangePetData}
+            disabled
           />
           <TextField
             error={errors.activity}
