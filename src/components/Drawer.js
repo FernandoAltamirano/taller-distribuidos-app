@@ -12,7 +12,7 @@ export const DrawerComponent = ({ isOpen, toggleModal }) => {
     >
       <div>
         <div className='flex drawer-header-component'>
-          <img src='/logo.png' alt='' width='50px' />
+          <img src='/logo2.png' alt='' width='50px' />
           <h3 style={{ color: "var(--white-color)", marginLeft: "10px" }}>
             Adopción
             <br /> de mascotas

@@ -143,7 +143,7 @@ export const FormContainer = ({ data, deleteData, id, getAllPets }) => {
             Cambiar imagen{" "}
             <input type='file' hidden onChange={handleUpdateImage} />
           </label>
-          <button onClick={handleDeletePreviewImage}>Borrar imagen</button>
+          <button className="delete-image-button" onClick={handleDeletePreviewImage}>Borrar imagen</button>
         </div>
         <div className='form-container grid'>
           <TextField

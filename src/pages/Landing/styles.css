@@ -57,6 +57,7 @@
   font-weight: 500;
   transition: 300ms all;
   font-size: 16px;
+  color: var(--white-color);
 }
 .enlaces div a:hover {
   opacity: 0.6;
@@ -261,12 +262,11 @@ main {
   display: flex;
 }
 #galery-container {
-  width: 90%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
   min-height: 500px;
   margin: 3rem auto;
 }
